@@ -9,7 +9,7 @@ app.listen((process.env.PORT || 3000));
 
 // Server frontpage
 app.get('/', function (req, res) {
-    res.send('This is the Chatbot for the KZO, if you want to talk to me on Facebook'); // Answer
+    res.send('This is the Chatbot for the KZO, if you want to talk to me come visit me on Facebook'); // Answer
 });
 
 app.get('/test', function (req, res) {
