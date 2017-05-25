@@ -32,12 +32,19 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if (event.message && event.message.text) {
+          if (event.message.text === "random") {
+            sendMessage(event.sender.id, {text: getRandom()});
+          } else {
             sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
+          }
         }
     }
     res.sendStatus(200);
 });
-
+function getRandom() {
+  var num = Math.random() *100;
+  return Math.floor(num);
+}
 // generic function sending messages
 function sendMessage(recipientId, message) {
     request({
