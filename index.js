@@ -36,11 +36,25 @@ app.post('/webhook', function (req, res) {
     for (i = 0; i < events.length; i++) {
         var event = events[i];
         if (event.message && event.message.text) {
-          if (event.message.text === "random") {
+
+          var userInput = event.message.text.toLowerCase();
+
+
+          if (userInput === "random") {
             sendMessage(event.sender.id, {text: getRandom()});
-          } else {
+          }
+
+          else if (userInput === "fluchen") {
+            sendMessage(event.sender.id, {text: "https://www.youtube.com/watch?v=LosO2ifzLRE"});
+          }
+
+          else {
             sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
           }
+
+
+
+
         }
     }
     res.sendStatus(200);
