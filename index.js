@@ -17,6 +17,10 @@ app.get('/test', function (req, res) {
     res.send('Echo'); // Answer
 });
 
+app.get('/privacy-policy', function (req, res) {
+    res.send('DA'); // Text der PP noch einfügen
+});
+
 // Facebook Webhook
 app.get('/webhook', function (req, res) {
     if (req.query['hub.verify_token'] === 'testbot_verify_token') {
