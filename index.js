@@ -46,6 +46,8 @@ app.post('/webhook', function (req, res) {
             sendMessage(event.sender.id, {text: "https://www.youtube.com/watch?v=LosO2ifzLRE"});
           } else if ( checkIfTimetable(userInput) ) {
             sendMessage(event.sender.id, {text: getTimeTableUrl(userInput) });
+          } else if (userInput === "hilfe") {
+            sendMessage(event.sender.id, {text: "Bisher Bekannte Befehle sind: random, fluchen und Stundenplan gefolgt von einer Klasse"});
           }
 
            else {
