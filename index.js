@@ -48,6 +48,8 @@ app.post('/webhook', function (req, res) {
             sendMessage(event.sender.id, {text: getTimeTableUrl(userInput) });
           } else if (userInput === "hilfe") {
             sendMessage(event.sender.id, {text: "Bisher Bekannte Befehle sind: random, fluchen und Stundenplan gefolgt von einer Klasse"});
+          } else if (userInput === "meaning of life") {
+            sendMessage(event.sender.id, {text: "42"});
           }
 
            else {
