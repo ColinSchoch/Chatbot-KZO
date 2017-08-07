@@ -7,6 +7,13 @@ app.use(bodyParser.urlencoded({extended: false})); // TODO: lookup
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 3000));
 
+var categories = ["zimmer", "stundenplan", "abensenzheft"];
+var data = {
+  sportplatz   : [8, 3, 0],
+  absenzenheft : [0, 0, 0],
+  unterschrift : [0, 2, 8]
+};
+
 // Server frontpage
 app.get('/', function (req, res) {
     res.send('This is the Chatbot for the KZO, if you want to talk to me come visit me on Facebook. ' +
@@ -53,7 +60,8 @@ app.post('/webhook', function (req, res) {
           }
 
            else {
-            sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
+            sendMessage(event.sender.id, {text: "Kategorie: " + getCategoryFromInput(userInput )});
+            //sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
           }
 
 
@@ -87,6 +95,50 @@ function getTimeTableUrl(userInput) {
   return "https://intranet.tam.ch/kzo/public/public-schedule?onlyTable=0&returnEntity=class&entityId=" + key + "&date=" + today + "&showBasicTimetable=0&width=99.99%25";
 }
 
+function getCategoryFromInput(userInput) {
+  userIput = removePunctuation(userIput);
+ var words = userInput.split(" ");
+ var results = [];
+words.forEach( function(word) {
+  if (data[word]){
+    results.push(data[word]);
+  }
+} );
+
+  var sum = new Array(categories.length).fill(0);
+  results.forEach( function(result){
+    for (i = 0; i < result.length; i++) {
+      sum[i] = sum[i]+result[i];
+    }
+  });
+
+  var categoryIndex = indexOfMax(sum);
+return categories[categoryIndex];
+
+
+}
+
+function indexOfMax(arr) {
+    if (arr.length === 0) {
+        return -1;
+    }
+
+    var max = arr[0];
+    var maxIndex = 0;
+
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            maxIndex = i;
+            max = arr[i];
+        }
+    }
+
+    return maxIndex;
+}
+
+function removePunctuation(userInput) {
+  return userInput.replace(/[?.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+}
 // generic function sending messages
 function sendMessage(recipientId, message) {
     request({
