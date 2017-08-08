@@ -60,7 +60,7 @@ app.post('/webhook', function (req, res) {
           }
 
            else {
-            sendMessage(event.sender.id, {text: "Kategorie: " + getCategoryFromInput(userInput )});
+            sendMessage(event.sender.id, {text: "Kategorie: " + getCategoryFromInput(userInput)});
             //sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
           }
 
@@ -96,7 +96,7 @@ function getTimeTableUrl(userInput) {
 }
 
 function getCategoryFromInput(userInput) {
-  userIput = removePunctuation(userInput);
+  userInput = removePunctuation(userInput);
  var words = userInput.split(" ");
  var results = [];
 words.forEach( function(word) {
