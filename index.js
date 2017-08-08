@@ -96,7 +96,7 @@ function getTimeTableUrl(userInput) {
 }
 
 function getCategoryFromInput(userInput) {
-  userIput = removePunctuation(userIput);
+  userIput = removePunctuation(userInput);
  var words = userInput.split(" ");
  var results = [];
 words.forEach( function(word) {
