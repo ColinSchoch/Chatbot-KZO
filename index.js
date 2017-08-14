@@ -7,11 +7,29 @@ app.use(bodyParser.urlencoded({extended: false})); // TODO: lookup
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 3000));
 
-var categories = ["zimmer", "stundenplan", "abensenzheft"];
+var categories = ["absenzenheft", "zimmer", "stundenplan", "mensa", "lehrer", "online", "sls und matur"];
 var data = {
-  sportplatz   : [8, 3, 0],
-  absenzenheft : [0, 0, 0],
-  unterschrift : [0, 2, 8]
+  absenzenheft   : [10, 0, 0, 0, 0, 0, 0],
+  unterschrift   : [10, 0, 0, 0, 0, 0, 0],
+  unterschreiben : [10, 0, 0, 0, 0, 0, 0],
+  zimmer         : [0, 6, 5, 0, 4, 0, 0],
+  sportplatz     : [0, 10, 2, 0, 0, 0, 0]
+  zeit           : [2, 5, 5, 2, 5, 2, 1]
+  turnhalle      : [0, 10, 2, 0, 0, 0, 0]
+  stundenplan    : [0, 5, 7, 0, 6, 5, 0]
+  lektion        : [0, 0, 8, 0, 5, 0, 0]
+  essen          : [0, 0, 0, 0, 10, 0, 0]
+  mensa          : [0, 0, 0, 0, 10, 0, 0]
+  rabattkarte    : [0, 0, 0, 0, 10, 0, 0]
+  lehrer         : [5, 0, 0, 0, 10, 5, 0]
+  unterricht     : [0, 0, 5, 0, 6, 0, 0]
+  klasse         : [0, 2, 2, 0, 6, 0, 0]
+  problem        : [0, 0, 0, 0, 5, 5, 0]
+  online         : [0, 0, 0, 0, 0, 10, 0]
+  studmail       : [0, 0, 0, 0, 0, 10, 0]
+  email          : [0, 0, 0, 0, 0, 10, 0]
+  sls            : [0, 0, 0, 0, 0, 0, 10]
+  matur          : [0, 0, 0, 0, 0, 0, 10]
 };
 
 // Server frontpage
