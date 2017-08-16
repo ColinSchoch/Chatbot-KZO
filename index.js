@@ -32,6 +32,9 @@ var data = {
   matur          : [0, 0, 0, 0, 0, 0, 10]
 };
 
+var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben"];
+var importantWordsZimmer       = ["darf", "rein", "wo", "wie"];
+  //TODO other categories
 // Server frontpage
 app.get('/', function (req, res) {
     res.send('This is the Chatbot for the KZO, if you want to talk to me come visit me on Facebook. ' +
@@ -78,12 +81,20 @@ app.post('/webhook', function (req, res) {
           }
 
            else {
+             var estimatedCategory = getCategoryFromInput(userInput);
+             if (estimatedCategory === "absenzenheft") {
+               var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsAbsenzenheft);
+
+               //todo generate answer from relevant words
+             } else if (estimatedCategory === "zimmer") {
+               var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsZimmer);
+             }
+             //TODO other categories
+             //TODO else case
+
             sendMessage(event.sender.id, {text: "Kategorie: " + getCategoryFromInput(userInput)});
             //sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
           }
-
-
-
 
         }
     }
@@ -93,7 +104,6 @@ function getRandom() {
   var num = Math.random() *100;
   return Math.floor(num);
 }
-
 function checkIfTimetable(userInput) {
   var classString = userInput.slice(-3);
   var classes = ["a6" , "an6", "c6a", "c6b", "c6c", "m6a", "m6b", "n6a", "n6b", "nm6", "w6a", "w6b", "ac5", "an5", "c5a", "c5b", "c5c", "m5a", "m5b", "n5a", "n5b", "w5b", "wn5", "a4" , "c4a", "c4b", "c4c", "c4d", "cw4", "m4a", "m4b", "n4a", "n4b", "n4c", "w4" , "a3" , "c3a", "c3b", "c3c", "m3a", "m3b", "n3a", "n3b", "n3c", "n3d", "w3", "u2a", "u2b", "u2c", "u2d", "u2e", "u2f", "u2g", "u1a", "u1b", "u1c", "u1d", "u1e", "u1f"];
@@ -115,25 +125,36 @@ function getTimeTableUrl(userInput) {
 
 function getCategoryFromInput(userInput) {
   userInput = removePunctuation(userInput);
- var words = userInput.split(" ");
- var results = [];
-words.forEach( function(word) {
-  if (data[word]){
-    results.push(data[word]);
-  }
-} );
-
-  var sum = new Array(categories.length).fill(0);
-  results.forEach( function(result){
-    for (i = 0; i < result.length; i++) {
-      sum[i] = sum[i]+result[i];
+  var words = userInput.split(" ");
+  //
+  var results = [];
+  words.forEach(function(word) {
+    if (data[word]) {
+      results.push(data[word]);
     }
   });
 
-  var categoryIndex = indexOfMax(sum);
-return categories[categoryIndex];
+  var sum = new Array(categories.length).fill(0);
+  results.forEach(function(result) {
+    for (i = 0; i < result.length; i++) {
+      sum[i] = sum[i] + result[i];
+    }
+  });
 
+  var categoryIndex = indexOfMax(sum);   //TODO stopp absenzenheft from being default answer
+  return categories[categoryIndex];
+}
 
+function getRelevantWordsForAnswer(userInput, importantWords) {
+  userInput = removePunctuation(userInput);
+  var words = userInput.split(" ");
+  var relevantWords = [];
+  words.forEach(function(word) {
+    if (importantWords.includes(word) ) {
+      relevantWords.push(word);
+    }
+  });
+  return relevantWords;
 }
 
 function indexOfMax(arr) {
