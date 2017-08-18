@@ -32,9 +32,14 @@ var data = {
   matur          : [0, 0, 0, 0, 0, 0, 10]
 };
 
-var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben"];
-var importantWordsZimmer       = ["darf", "rein", "wo", "wie"];
-  //TODO other categories
+var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit"];
+var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen"];
+var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt"]
+var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wie", "funktioniert", "rabattkarte"]
+var importantWordsLehrer       = ["wo," "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "lehrer"]
+var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer"]
+var importantWordsSlsUndMatur  = ["wann", "infos"]
+
 // Server frontpage
 app.get('/', function (req, res) {
     res.send('This is the Chatbot for the KZO, if you want to talk to me come visit me on Facebook. ' +
@@ -88,15 +93,25 @@ app.post('/webhook', function (req, res) {
                //todo generate answer from relevant words
              } else if (estimatedCategory === "zimmer") {
                var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsZimmer);
+             } else if (estimatedCategory === "stundenplan") {
+               var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsStundenplan);
+             } else if (estimatedCategory === "mensa") {
+               var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsMensa);
+             } else if (estimatedCategory === "lehrer") {
+              var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsLehrer);
+            } else if (estimatedCategory === "online") {
+              var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsOnline);
+            } else if (estimatedCategory === "sls und matur") {
+              var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsSlsUndMatur);
              }
-             //TODO other categories
+
              //TODO else case
 
             sendMessage(event.sender.id, {text: "Kategorie: " + getCategoryFromInput(userInput)});
             //sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
-          }
 
-        }
+
+
     }
     res.sendStatus(200);
 });
