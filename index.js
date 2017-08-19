@@ -95,28 +95,30 @@ app.post('/webhook', function(req, res) {
         });
       } else {
         var estimatedCategory = getCategoryFromInput(userInput);
+        var relevantWords = [];
+        var answer = "";
+
         if (estimatedCategory === "absenzenheft") {
-          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsAbsenzenheft);
-
+          relevantWords = getRelevantWordsForAnswer(userInput, importantWordsAbsenzenheft);
         } else if (estimatedCategory === "zimmer") {
-          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsZimmer);
+          relevantWords = getRelevantWordsForAnswer(userInput, importantWordsZimmer);
         } else if (estimatedCategory === "stundenplan") {
-          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsStundenplan);
+          relevantWords = getRelevantWordsForAnswer(userInput, importantWordsStundenplan);
         } else if (estimatedCategory === "mensa") {
-          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsMensa);
+          relevantWords = getRelevantWordsForAnswer(userInput, importantWordsMensa);
         } else if (estimatedCategory === "lehrer") {
-          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsLehrer);
+          relevantWords = getRelevantWordsForAnswer(userInput, importantWordsLehrer);
         } else if (estimatedCategory === "online") {
-          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsOnline);
+          relevantWords = getRelevantWordsForAnswer(userInput, importantWordsOnline);
         } else if (estimatedCategory === "sls und matur") {
-          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsSlsUndMatur);
+          relevantWords = getRelevantWordsForAnswer(userInput, importantWordsSlsUndMatur);
         }
-
         //TODO else case
 
-        sendMessage(event.sender.id, {
-          text: relevantWords.toString() + estimatedCategory
-        });
+        answer = generateAnswer(relevantWords, estimatedCategory);
+
+
+        sendMessage(event.sender.id, { text: answer });
         //sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
       }
       res.sendStatus(200);
@@ -203,6 +205,17 @@ function indexOfMax(arr) {
 function removePunctuation(userInput) {
   return userInput.replace(/[?.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
 }
+
+function generateAnswer(relevantWords, estimatedCategory) {
+  var answer = "";
+  if (estimatedCategory === "absenzenheft"){
+    if (relevantWords.includes("wo")&& relevantWords.includes("neues")){
+      answer = "Ein neues Absenzenheft kanst du im Sekretariat holen. Dabei musst du aber entweder das volle Absenzenheft mitbringen, oder wenn du es verloren hast muss der Klassenlehrer unterschreiben dass du es verloren hast.";
+    }
+  }
+  return answer;
+}
+
 // generic function sending messages
 function sendMessage(recipientId, message) {
     request({
