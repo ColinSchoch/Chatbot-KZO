@@ -34,11 +34,11 @@ var data = {
 
 var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit"];
 var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen"];
-var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt"]
-var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wie", "funktioniert", "rabattkarte"]
-var importantWordsLehrer       = ["wo," "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "lehrer"]
-var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer"]
-var importantWordsSlsUndMatur  = ["wann", "infos"]
+var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt"];
+var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wie", "funktioniert", "rabattkarte"];
+var importantWordsLehrer       = ["wo," "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "lehrer"];
+var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer"];
+var importantWordsSlsUndMatur  = ["wann", "infos"];
 
 // Server frontpage
 app.get('/', function (req, res) {
@@ -90,7 +90,6 @@ app.post('/webhook', function (req, res) {
              if (estimatedCategory === "absenzenheft") {
                var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsAbsenzenheft);
 
-               //todo generate answer from relevant words
              } else if (estimatedCategory === "zimmer") {
                var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsZimmer);
              } else if (estimatedCategory === "stundenplan") {
@@ -107,7 +106,7 @@ app.post('/webhook', function (req, res) {
 
              //TODO else case
 
-            sendMessage(event.sender.id, {text: "Kategorie: " + getCategoryFromInput(userInput)});
+            sendMessage(event.sender.id, {text: relevantWords.toString() + estimatedCategory});
             //sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
 
 
