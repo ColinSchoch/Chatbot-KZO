@@ -153,7 +153,7 @@ function getTimeTableUrl(userInput) {
 function getCategoryFromInput(userInput) {
   userInput = removePunctuation(userInput);
   var words = userInput.split(" ");
-  //
+  //todo document this
   var results = [];
   words.forEach(function(word) {
     if (data[word]) {
@@ -168,7 +168,11 @@ function getCategoryFromInput(userInput) {
     }
   });
 
-  var categoryIndex = indexOfMax(sum);   //TODO stopp absenzenheft from being default answer
+  var categoryIndex = indexOfMax(sum);
+  // stopp absenzenheft from being default answer
+  if (categoryIndex === 0&&sum[0]===0){
+    return "";
+  }
   return categories[categoryIndex];
 }
 
@@ -212,6 +216,19 @@ function generateAnswer(relevantWords, estimatedCategory) {
     if (relevantWords.includes("wo")&& relevantWords.includes("neues")){
       answer = "Ein neues Absenzenheft kanst du im Sekretariat holen. Dabei musst du aber entweder das volle Absenzenheft mitbringen, oder wenn du es verloren hast muss der Klassenlehrer unterschreiben dass du es verloren hast.";
     }
+    else if (relevantWords.includes("unterschreiben")) {
+      answer = "Das Absenzenheft muss von deinen Eltern und von jedem Lehrer unterschrieben werden, bei dem du gefehlt hast. Ausserdem muss der Klassenlehrer ganz am Schluss unterschreiben. Sobald du 18 bist darfst dann du anstelle deiner Eltern unterschreiben, vorher jedoch nicht!";
+
+    }
+    // else noch hinzufügen
+  }
+  else if (estimatedCategory === "zimmer"){
+    if (relevantWords.includes("darf")&& relevantWords.includes("rein")){
+      answer = "Ja in freie Zimmer darf man rein";
+    }
+  }
+  else {
+    answer = "Sorry ich habe deine Frage nicht verstanden";
   }
   return answer;
 }
