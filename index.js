@@ -36,7 +36,7 @@ var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie",
 var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen"];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wie", "funktioniert", "rabattkarte"];
-var importantWordsLehrer       = ["wo," "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "lehrer"];
+var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "lehrer"];
 var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer"];
 var importantWordsSlsUndMatur  = ["wann", "infos"];
 
