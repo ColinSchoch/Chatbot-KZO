@@ -64,56 +64,67 @@ app.get('/webhook', function (req, res) {
 });
 
 // handler receiving messages
-app.post('/webhook', function (req, res) {
-    var events = req.body.entry[0].messaging;
-    for (i = 0; i < events.length; i++) {
-        var event = events[i];
-        if (event.message && event.message.text) {
+app.post('/webhook', function(req, res) {
+  var events = req.body.entry[0].messaging;
+  for (i = 0; i < events.length; i++) {
+    var event = events[i];
+    if (event.message && event.message.text) {
 
-          var userInput = event.message.text.toLowerCase();
-
-
-          if (userInput === "random") {
-            sendMessage(event.sender.id, {text: getRandom()});
-          } else if (userInput === "fluchen") {
-            sendMessage(event.sender.id, {text: "https://www.youtube.com/watch?v=LosO2ifzLRE"});
-          } else if ( checkIfTimetable(userInput) ) {
-            sendMessage(event.sender.id, {text: getTimeTableUrl(userInput) });
-          } else if (userInput === "hilfe") {
-            sendMessage(event.sender.id, {text: "Bisher Bekannte Befehle sind: random, fluchen und Stundenplan gefolgt von einer Klasse"});
-          } else if (userInput === "meaning of life") {
-            sendMessage(event.sender.id, {text: "42"});
-          }
-
-           else {
-             var estimatedCategory = getCategoryFromInput(userInput);
-             if (estimatedCategory === "absenzenheft") {
-               var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsAbsenzenheft);
-
-             } else if (estimatedCategory === "zimmer") {
-               var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsZimmer);
-             } else if (estimatedCategory === "stundenplan") {
-               var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsStundenplan);
-             } else if (estimatedCategory === "mensa") {
-               var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsMensa);
-             } else if (estimatedCategory === "lehrer") {
-              var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsLehrer);
-            } else if (estimatedCategory === "online") {
-              var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsOnline);
-            } else if (estimatedCategory === "sls und matur") {
-              var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsSlsUndMatur);
-             }
-
-             //TODO else case
-
-            sendMessage(event.sender.id, {text: relevantWords.toString() + estimatedCategory});
-            //sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
+      var userInput = event.message.text.toLowerCase();
 
 
+      if (userInput === "random") {
+        sendMessage(event.sender.id, {
+          text: getRandom()
+        });
+      } else if (userInput === "fluchen") {
+        sendMessage(event.sender.id, {
+          text: "https://www.youtube.com/watch?v=LosO2ifzLRE"
+        });
+      } else if (checkIfTimetable(userInput)) {
+        sendMessage(event.sender.id, {
+          text: getTimeTableUrl(userInput)
+        });
+      } else if (userInput === "hilfe") {
+        sendMessage(event.sender.id, {
+          text: "Bisher Bekannte Befehle sind: random, fluchen und Stundenplan gefolgt von einer Klasse"
+        });
+      } else if (userInput === "meaning of life") {
+        sendMessage(event.sender.id, {
+          text: "42"
+        });
+      } else {
+        var estimatedCategory = getCategoryFromInput(userInput);
+        if (estimatedCategory === "absenzenheft") {
+          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsAbsenzenheft);
 
+        } else if (estimatedCategory === "zimmer") {
+          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsZimmer);
+        } else if (estimatedCategory === "stundenplan") {
+          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsStundenplan);
+        } else if (estimatedCategory === "mensa") {
+          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsMensa);
+        } else if (estimatedCategory === "lehrer") {
+          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsLehrer);
+        } else if (estimatedCategory === "online") {
+          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsOnline);
+        } else if (estimatedCategory === "sls und matur") {
+          var relevantWords = getRelevantWordsForAnswer(userInput, importantWordsSlsUndMatur);
+        }
+
+        //TODO else case
+
+        sendMessage(event.sender.id, {
+          text: relevantWords.toString() + estimatedCategory
+        });
+        //sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
+      }
+      res.sendStatus(200);
     }
-    res.sendStatus(200);
+  }
 });
+
+
 function getRandom() {
   var num = Math.random() *100;
   return Math.floor(num);
