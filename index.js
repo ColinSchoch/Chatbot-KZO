@@ -219,10 +219,10 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("unterschreiben")) {
       answer = "Das Absenzenheft muss von deinen Eltern und von jedem Lehrer unterschrieben werden, bei dem du gefehlt hast. Ausserdem muss der Klassenlehrer ganz am Schluss unterschreiben. Sobald du 18 bist darfst dann du anstelle deiner Eltern unterschreiben, vorher jedoch nicht!";
     }
-    else if (relevantWord.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("zeit")) {
+    else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("zeit")) {
       answer = ":O" // richtige antwort einfügen
     }
-    else if (relevantWord.includes("wie")&& relevantWord.includes("urlaubsgesuch")&& relevsntWords.includes("vorher")) {
+    else if (relevantWords.includes("wie")&& relevantWords.includes("urlaubsgesuch")&& relevsntWords.includes("vorher")) {
       answer = "Um ein Urlaubsgesuch zu bekommen muss man die Unterschrift spätestens eine Woche vor dem Datum des Gesuchs holen."
     }
 
@@ -241,16 +241,16 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("a")){
       answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts geht und dort die Treppe runter geht. Die Umkleidekabinen findet man wenn man noch eine Treppe runter geht und links in den Gang geht."
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords,includes("b")){
+    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("b")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords,includes("c")){
+    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("c")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords,includes("d")){
+    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("d")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords,includes("e")){
+    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("e")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
     }
   }
