@@ -238,19 +238,19 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes ("wie")&& relevantWords.includes("viel")&& relevantWords.includes("zeit")&& relevantWords.includes("sportplatz")&& relevantWords.includes("mehr")){
       answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz hat kommen nochmals 3 Minuten hinzu. Das heisst eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion."
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes ("turnhalle")&& relevantWords.includes ("a")){
+    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("a")){
       answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts geht und dort die Treppe runter geht. Die Umkleidekabinen findet man wenn man noch eine Treppe runter geht und links in den Gang geht."
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes ("turnhalle")&& relevantWords,includes ("b")){
+    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords,includes("b")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes ("turnhalle")&& relevantWords,includes ("c")){
+    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords,includes("c")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes ("turnhalle")&& relevantWords,includes ("d")){
+    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords,includes("d")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes ("turnhalle")&& relevantWords,includes ("e")){
+    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords,includes("e")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
     }
   }
