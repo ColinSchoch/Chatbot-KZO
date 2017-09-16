@@ -220,10 +220,10 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Das Absenzenheft muss von deinen Eltern und von jedem Lehrer unterschrieben werden, bei dem du gefehlt hast. Ausserdem muss der Klassenlehrer ganz am Schluss unterschreiben. Sobald du 18 bist darfst dann du anstelle deiner Eltern unterschreiben, vorher jedoch nicht!";
     }
     else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("zeit")) {
-      answer = ":O" // richtige antwort einfügen
+      answer = ":O"; // richtige antwort einfügen
     }
     else if (relevantWords.includes("wie")&& relevantWords.includes("urlaubsgesuch")&& relevsntWords.includes("vorher")) {
-      answer = "Um ein Urlaubsgesuch zu bekommen muss man die Unterschrift spätestens eine Woche vor dem Datum des Gesuchs holen."
+      answer = "Um ein Urlaubsgesuch zu bekommen muss man die Unterschrift spätestens eine Woche vor dem Datum des Gesuchs holen.";
     }
 
     // else noch hinzufügen
@@ -233,25 +233,25 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Ja in freie Zimmer darf man rein";
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("sportplatz")){
-      answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der nach rechts folgen und dann rechts über die Wiese gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz."
+      answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der nach rechts folgen und dann rechts über die Wiese gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
     }
     else if (relevantWords.includes ("wie")&& relevantWords.includes("viel")&& relevantWords.includes("zeit")&& relevantWords.includes("sportplatz")&& relevantWords.includes("mehr")){
-      answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz hat kommen nochmals 3 Minuten hinzu. Das heisst eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion."
+      answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz hat kommen nochmals 3 Minuten hinzu. Das heisst eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("a")){
-      answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts geht und dort die Treppe runter geht. Die Umkleidekabinen findet man wenn man noch eine Treppe runter geht und links in den Gang geht."
+      answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts geht und dort die Treppe runter geht. Die Umkleidekabinen findet man wenn man noch eine Treppe runter geht und links in den Gang geht.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("b")){
-      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
+      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("c")){
-      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
+      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("d")){
-      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
+      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("e")){
-      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B."
+      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
     }
   }
   else {
