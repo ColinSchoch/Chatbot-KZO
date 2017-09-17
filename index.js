@@ -222,7 +222,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("zeit")) {
       answer = ":O"; // richtige antwort einfügen
     }
-    else if (relevantWords.includes("wie")&& relevantWords.includes("urlaubsgesuch")&& relevsntWords.includes("vorher")) {
+    else if (relevantWords.includes("wie")&& relevantWords.includes("urlaubsgesuch")&& relevantWords.includes("vorher")) {
       answer = "Um ein Urlaubsgesuch zu bekommen muss man die Unterschrift spätestens eine Woche vor dem Datum des Gesuchs holen.";
     }
 
@@ -230,7 +230,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
   }
   else if (estimatedCategory === "zimmer"){
     if (relevantWords.includes("darf")&& relevantWords.includes("rein")){
-      answer = "Ja in freie Zimmer darf man rein";
+      answer = "Ja in freie Zimmer darf man rein.";
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("sportplatz")){
       answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der nach rechts folgen und dann rechts über die Wiese gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
