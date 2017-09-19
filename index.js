@@ -85,9 +85,9 @@ app.post('/webhook', function(req, res) {
         sendMessage(event.sender.id, {
           text: getTimeTableUrl(userInput)
         });
-      } else if (userInput === "hilfe") {
+      } else if (userInput === "hallo" || userInput === "hi") {
         sendMessage(event.sender.id, {
-          text: "Bisher Bekannte Befehle sind: random, fluchen und Stundenplan gefolgt von einer Klasse"
+          text: randomAnswerForHello()
         });
       } else if (userInput === "meaning of life") {
         sendMessage(event.sender.id, {
@@ -126,6 +126,14 @@ app.post('/webhook', function(req, res) {
   }
 });
 
+var answerForHello = [
+  "Hallo!", "Hi", "Hey", "Guten Tag"
+];
+
+function randomAnswerForHello() {
+var answerForHello1 = answerForHello[Math.floor(Math.random()*randomAnswerForHello.length)];
+return answerForHello1;
+}
 
 function getRandom() {
   var num = Math.random() *100;
@@ -239,20 +247,21 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz hat kommen nochmals 3 Minuten hinzu. Das heisst eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("a")){
-      answer = `Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts und dann runter geht.
-      Die Umkleidekabinen findet man, wenn man noch eine Treppe runter geht und links den Gang entlang.`;
+      answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts und dann runter geht. "+
+               "Die Umkleidekabinen findet man, wenn man noch eine Treppe runter geht und links den Gang entlang.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("b")){
-      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
+      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. "+
+               "Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("c")){
-      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
+      answer = "Turnhalle C findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann nach unten geht. Wenn man die Treppe runterläuft und dann nach links geht ist die erste Turnhalle die Turnhalle C.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("d")){
-      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
+      answer = "Turnhalle D findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht muss man an einer Turnhalle vorbei gehen und die hintere ist dann die Turnhalle D.";
     }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("e")){
-      answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
+      answer = "Turnhalle E findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach links geht an der Turnhalle C vorbei kommt man zur Turnhalle E.";
     }
   }
   else {
