@@ -85,7 +85,7 @@ app.post('/webhook', function(req, res) {
         sendMessage(event.sender.id, {
           text: getTimeTableUrl(userInput)
         });
-      } else if (userInput === "hallo" || userInput === "hi") {
+      } else if (userInput === "hallo" || userInput === "hi" || userInput === "hey") {
         sendMessage(event.sender.id, {
           text: randomAnswerForHello()
         });
@@ -131,7 +131,7 @@ var answerForHello = [
 ];
 
 function randomAnswerForHello() {
-var answerForHello1 = answerForHello[Math.floor(Math.random()*randomAnswerForHello.length)];
+var answerForHello1 = answerForHello[Math.floor(Math.random()*answerForHello.length)];
 return answerForHello1;
 }
 
