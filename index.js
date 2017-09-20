@@ -35,8 +35,8 @@ var data = {
 var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch"];
 var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle"];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt"];
-var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wie", "funktioniert", "rabattkarte"];
-var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "lehrer"];
+var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte"];
+var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse"];
 var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer"];
 var importantWordsSlsUndMatur  = ["wann", "infos"];
 
@@ -85,7 +85,7 @@ app.post('/webhook', function(req, res) {
         sendMessage(event.sender.id, {
           text: getTimeTableUrl(userInput)
         });
-      } else if (userInput === "hallo" || userInput === "hi" || userInput === "hey") {
+      } else if (userInput === "hallo" || userInput === "hi" || userInput === "hey" || userInput === "hoi" || userInput === "salut") {
         sendMessage(event.sender.id, {
           text: randomAnswerForHello()
         });
@@ -230,7 +230,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("zeit")) {
       answer = ":O"; // richtige antwort einfügen
     }
-    else if (relevantWords.includes("wie")&& relevantWords.includes("urlaubsgesuch")&& relevantWords.includes("vorher")) {
+    else if (relevantWords.includes("wie")&& relevantWords.includes("urlaubsgesuch")&& relevantWords.includes("zeit")) {
       answer = "Um ein Urlaubsgesuch zu bekommen muss man die Unterschrift spätestens eine Woche vor dem Datum des Gesuchs holen.";
     }
 
@@ -264,11 +264,34 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Turnhalle E findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach links geht an der Turnhalle C vorbei kommt man zur Turnhalle E.";
     }
   }
+  else if (estimatedCategory === "stundenplan"){
+    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("zimmer")){
+      answer = "Das Zimmer sieht man auf dem Stundenplan jeweils auf der unteren Zeile die Zahl ganz rechts."
+    }
+    else if (relevantWords.includes ("stunde")&& relevantWords.includes("sehe")&& relevantWords.includes("ausfällt")){
+      answer = "Ob eine Stunde ausfällt sieht man auf dem Stundenplan. Wenn eine Lektion rot durchgestrichen ist heisst dass das die Stunde ausfällt."
+    }
+  }
+  else if (estimatedCategory === "mensa"){
+    if (relevantWords.includes("wie")&& relevantWords.includes("teuer")&& relevantWords.includes("essen")){
+      answer = "?"
+    }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("menüplan")){
+      answer = "?"
+    }
+    else if (relevantWords.inludes("wie")&& relevantWords.includes("funktioniert")&& relevantWords.includes("rabattkarte")){
+      answer = "?"
+    }
+  }
+  else if (estimatedCategory === "lehrer"){
+    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("untericv"))
+  }
   else {
-    answer = "Sorry ich habe deine Frage nicht verstanden.";
+    answer = "Sorry ich habe deine Frage nicht verstanden. Bitte beachte, dass ich nur Hochdeutsch verstehe. Falls du deine Frage in Hochdeutsch gestellt hast und ich deine Frage immernoch nicht verstehe, versuche die Frage anders zu formulieren.";
   }
   return answer;
 }
+
 
 // generic function sending messages
 function sendMessage(recipientId, message) {
