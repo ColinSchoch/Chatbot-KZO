@@ -284,7 +284,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
   }
   else if (estimatedCategory === "lehrer"){
-    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("untericv"))
+    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("untericht"))
   }
   else {
     answer = "Sorry ich habe deine Frage nicht verstanden. Bitte beachte, dass ich nur Hochdeutsch verstehe. Falls du deine Frage in Hochdeutsch gestellt hast und ich deine Frage immernoch nicht verstehe, versuche die Frage anders zu formulieren.";
