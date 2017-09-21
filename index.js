@@ -269,7 +269,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Das Zimmer sieht man auf dem Stundenplan jeweils auf der unteren Zeile die Zahl ganz rechts."
     }
     else if (relevantWords.includes ("stunde")&& relevantWords.includes("sehe")&& relevantWords.includes("ausfällt")){
-      answer = "Ob eine Stunde ausfällt sieht man auf dem Stundenplan. Wenn eine Lektion rot durchgestrichen ist heisst dass das die Stunde ausfällt."
+      answer = "Ob eine Stunde ausfällt sieht man auf dem Stundenplan. Wenn eine Lektion rot durchgestrichen ist heisst dass, das die Stunde ausfällt."
     }
   }
   else if (estimatedCategory === "mensa"){
@@ -284,7 +284,9 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
   }
   else if (estimatedCategory === "lehrer"){
-    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("untericht"))
+    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("untericht")){
+      answer = "Man sieht alle Lehrer und ihre Unterichtszeiten auf einem Plan neben dem Lehrerzimmer. Das Lehrerzimmer findet man wenn man von dem Foyer aus richtung Aula läuft ist es die letze Tür vor dem Seiteneingang zur KZO."
+    }
   }
   else {
     answer = "Sorry ich habe deine Frage nicht verstanden. Bitte beachte, dass ich nur Hochdeutsch verstehe. Falls du deine Frage in Hochdeutsch gestellt hast und ich deine Frage immernoch nicht verstehe, versuche die Frage anders zu formulieren.";
