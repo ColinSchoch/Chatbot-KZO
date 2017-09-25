@@ -51,11 +51,11 @@ app.get('/test', function (req, res) {
 });
 
 app.get('/Datennutzungsbestimmung', function (req, res) {
-    res.send("Datennutzungsbestimmung KZO-Bot vom 25.09.2017" +
-"Diese Seite dient zu ihrer Information über die Datennutzungsbestimmungen des KZO-Bots. " +
-"Ihre persönlichen Daten und Informationen werden in keiner Form von dem KZO-Chatbot gespeichert. Nur der Name ihres Facebook-Profils ist für den Urheber dieser Seite sichtbar. Dieser wird aber niemanden weitergegeben. " +
+    res.send("Datennutzungsbestimmung KZO-Bot vom 25.09.2017 " /n +
+"Diese Seite dient zu ihrer Information über die Datennutzungsbestimmungen des KZO-Bots. " /n +
+"Ihre persönlichen Daten und Informationen werden in keiner Form von dem KZO-Chatbot gespeichert. Nur der Name ihres Facebook-Profils ist für den Urheber dieser Seite sichtbar. Dieser wird aber niemanden weitergegeben. " /n +
 "Die Fragen die sie an den KZO-Bot stellen sind für den Betreiber sichtbar und werden eventuell zur Weiterentwicklung des KZO-Bots verwendet." +
-"Ansonsten sind sie aber für niemanden sichtbar und werden auch an niemanden weitergegeben. Die Fragen werden auch extern nicht gespeichert, sondern sind nur im Facebook-Verlauf. " +
+"Ansonsten sind sie aber für niemanden sichtbar und werden auch an niemanden weitergegeben. Die Fragen werden auch extern nicht gespeichert, sondern sind nur im Facebook-Verlauf. " /n +
 "Es ist dem Urheber vorbehalten diese Datennutzungsbestimmungen bei Bedarf zu ändern."
 ); // Text der PP noch einfügen
 });
