@@ -51,7 +51,7 @@ app.get('/test', function (req, res) {
 });
 
 app.get('/Datennutzungsbestimmung', function (req, res) {
-    res.send("Datennutzungsbestimmung KZO-Bot vom 25.09.2017 <br /> "  +
+    res.send("Datennutzungsbestimmung KZO-Bot vom 25.09.2017 <br /> <br /> "  +
 "Diese Seite dient zu ihrer Information über die Datennutzungsbestimmungen des KZO-Bots. <br /> " +
 "Ihre persönlichen Daten und Informationen werden in keiner Form von dem KZO-Chatbot gespeichert. Nur der Name ihres Facebook-Profils ist für den Urheber dieser Seite sichtbar. Dieser wird aber niemanden weitergegeben. " +
 "Die Fragen die sie an den KZO-Bot stellen sind für den Betreiber sichtbar und werden eventuell zur Weiterentwicklung des KZO-Bots verwendet.<br /> " +
@@ -305,10 +305,10 @@ function generateAnswer(relevantWords, estimatedCategory) {
   else if (estimatedCategory === "online"){
     if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("online")&& relevantWords.includes("stundenplan")){
       answer = "Unter https://intranet.tam.ch/kzo/ könnt ihr euch anmelden und dann unter der Leiste Stundenplan seht ihr euren jeweiligen Stundenplan mit allenfalls gestrichenen Stunden." +
-              ' Um auf diese Seite zu kommen könnt ihr auch gleich diesem<a href="https://intranet.tam.ch/kzo/">Link</a> folgen.';
+              ' Um auf diese Seite zu kommen könnt ihr auch gleich diesem <a href="https://intranet.tam.ch/kzo/">Link</a> folgen.';
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("studmail")){
-      answer = 'Die Studmail findest du wenn du dich auf<a href="https://intranet.tam.ch/kzo/">dieser</a> Seite anmeldest. Dort siehst du dann oben rechts einen Briefumschlag. Wenn du den anklickts kommst du zu der Studmail.';
+      answer = 'Die Studmail findest du wenn du dich auf <a href="https://intranet.tam.ch/kzo/">dieser</a> Seite anmeldest. Dort siehst du dann oben rechts einen Briefumschlag. Wenn du den anklickts kommst du zu der Studmail.';
     }
     else if (relevantWords.includes("was")&& relevantWords.includes("email")&& relevantWords.includes("lehrer")){
       answer = "Die E-Mail der Lehere ist immer vorname.nachname@kzo.ch . Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch "
