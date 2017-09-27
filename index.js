@@ -33,7 +33,7 @@ var data = {
 };
 
 var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch"];
-var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle"];
+var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen"];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse"];
@@ -52,10 +52,10 @@ app.get('/test', function (req, res) {
 
 app.get('/Datennutzungsbestimmung', function (req, res) {
     res.send("Datennutzungsbestimmung KZO-Bot vom 25.09.2017 <br /> <br /> "  +
-"Diese Seite dient zu ihrer Information über die Datennutzungsbestimmungen des KZO-Bots. <br /> " +
+"Diese Seite dient zu ihrer Information über die Datennutzungsbestimmungen des KZO-Bots. <br /> <br /> " +
 "Ihre persönlichen Daten und Informationen werden in keiner Form von dem KZO-Chatbot gespeichert. Nur der Name ihres Facebook-Profils ist für den Urheber dieser Seite sichtbar. Dieser wird aber niemanden weitergegeben. " +
-"Die Fragen die sie an den KZO-Bot stellen sind für den Betreiber sichtbar und werden eventuell zur Weiterentwicklung des KZO-Bots verwendet.<br /> " +
-"Ansonsten sind sie aber für niemanden sichtbar und werden auch an niemanden weitergegeben. Die Fragen werden auch extern nicht gespeichert, sondern sind nur im Facebook-Verlauf. <br /> " +
+"Die Fragen die sie an den KZO-Bot stellen sind für den Betreiber sichtbar und werden eventuell zur Weiterentwicklung des KZO-Bots verwendet.<br /> <br /> " +
+"Ansonsten sind sie aber für niemanden sichtbar und werden auch an niemanden weitergegeben. Die Fragen werden auch extern nicht gespeichert, sondern sind nur im Facebook-Verlauf. <br /> <br /> " +
 "Es ist dem Urheber vorbehalten diese Datennutzungsbestimmungen bei Bedarf zu ändern."
 );
 });
@@ -77,7 +77,7 @@ app.post('/webhook', function(req, res) {
     if (event.message && event.message.text) {
 
       var userInput = event.message.text.toLowerCase();
-
+      userInput = removePunctuation(userInput);
 
       if (userInput === "random") {
         sendMessage(event.sender.id, {
@@ -91,7 +91,7 @@ app.post('/webhook', function(req, res) {
         sendMessage(event.sender.id, {
           text: getTimeTableUrl(userInput)
         });
-      } else if (userInput === "hallo" || userInput === "hi" || userInput === "hey" || userInput === "hoi" || userInput === "salut" || userInput === "ciao") {
+      } else if (userInput === "hallo" || userInput === "hi" || userInput === "hey" || userInput === "hoi" || userInput === "salut" || userInput === "ciao" || userInput === "grüezi") {
         sendMessage(event.sender.id, {
           text: randomAnswerForHello()
         });
@@ -165,7 +165,6 @@ function getTimeTableUrl(userInput) {
 }
 
 function getCategoryFromInput(userInput) {
-  userInput = removePunctuation(userInput);
   var words = userInput.split(" ");
   //todo document this
   var results = [];
@@ -190,7 +189,6 @@ function getCategoryFromInput(userInput) {
 }
 
 function getRelevantWordsForAnswer(userInput, importantWords) {
-  userInput = removePunctuation(userInput);
   var words = userInput.split(" ");
   var relevantWords = [];
   words.forEach(function(word) {
@@ -251,24 +249,24 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes ("wie")&& relevantWords.includes("viel")&& relevantWords.includes("zeit")&& relevantWords.includes("sportplatz")&& relevantWords.includes("mehr")){
       answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz hat kommen nochmals 3 Minuten hinzu. Das heisst eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion.";
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("a")){
+    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("a")){
       answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts und dann runter geht. "+
                "Die Umkleidekabinen findet man, wenn man noch eine Treppe runter geht und links den Gang entlang.";
     }
-    else if (relevantWords.includes("wo")&& relevantWords.includes("turnhallen")){
+    else if (relevantWords.includes("wo")&& (relevantWords.includes("turnhallen") || relevantWords.includes("sporthallen"))){
       answer = "Die Turnhallen findet man wenn man von der Freitreppe aus links am Brunnen vorbeigeht. Dann geht man bis zur Doppeltüre rechts, für die man keine Treppe runter muss. Dort hinein findet man die Turnhallen.";
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("b")){
+    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("b")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. "+
                "Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("c")){
+    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("c")){
       answer = "Turnhalle C findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann nach unten geht. Wenn man die Treppe runterläuft und dann nach links geht ist die erste Turnhalle die Turnhalle C.";
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("d")){
+    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("d")){
       answer = "Turnhalle D findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach rechts geht muss man an einer Turnhalle vorbei gehen und die hintere ist dann die Turnhalle D.";
     }
-    else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("e")){
+    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("e")){
       answer = "Turnhalle E findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe runterläuft und dann nach links geht an der Turnhalle C vorbei kommt man zur Turnhalle E.";
     }
   }
@@ -311,7 +309,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = 'Die Studmail findest du wenn du dich auf <a href="https://intranet.tam.ch/kzo/">dieser</a> Seite anmeldest. Dort siehst du dann oben rechts einen Briefumschlag. Wenn du den anklickts kommst du zu der Studmail.';
     }
     else if (relevantWords.includes("was")&& relevantWords.includes("email")&& relevantWords.includes("lehrer")){
-      answer = "Die E-Mail der Lehere ist immer vorname.nachname@kzo.ch . Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch "
+      answer = "Die E-Mail der Lehere ist immer vorname.nachname@kzo.ch. Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch "
     }
   }
   else {
