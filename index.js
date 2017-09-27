@@ -43,7 +43,7 @@ var importantWordsSlsUndMatur  = ["wann", "infos"];
 // Server frontpage
 app.get('/', function (req, res) {
     res.send('Dies ist der Chatbot für die KZO. Wenn du mit mir reden möchtest komm mich doch auf Facebook besuchen. ' +
-    ' Bitte folge diesem Link:<a href="https://www.facebook.com/Chatbot-1835882586663460/?ref=aymt_homepage_panel">hier</a>'); // Answer
+    ' Bitte folge diesem Link:<a href="https://www.facebook.com/Chatbot-1835882586663460/?ref=aymt_homepage_panel">hier</a>');
 });
 
 app.get('/test', function (req, res) {
@@ -51,13 +51,13 @@ app.get('/test', function (req, res) {
 });
 
 app.get('/Datennutzungsbestimmung', function (req, res) {
-    res.send("Datennutzungsbestimmung KZO-Bot vom 25.09.2017\r\n " +
-"Diese Seite dient zu ihrer Information über die Datennutzungsbestimmungen des KZO-Bots.\r\n " +
-"Ihre persönlichen Daten und Informationen werden in keiner Form von dem KZO-Chatbot gespeichert. Nur der Name ihres Facebook-Profils ist für den Urheber dieser Seite sichtbar. Dieser wird aber niemanden weitergegeben.\r\n  " +
+    res.send("Datennutzungsbestimmung KZO-Bot vom 25.09.2017 "  +
+"Diese Seite dient zu ihrer Information über die Datennutzungsbestimmungen des KZO-Bots. " +
+"Ihre persönlichen Daten und Informationen werden in keiner Form von dem KZO-Chatbot gespeichert. Nur der Name ihres Facebook-Profils ist für den Urheber dieser Seite sichtbar. Dieser wird aber niemanden weitergegeben. " +
 "Die Fragen die sie an den KZO-Bot stellen sind für den Betreiber sichtbar und werden eventuell zur Weiterentwicklung des KZO-Bots verwendet." +
-"Ansonsten sind sie aber für niemanden sichtbar und werden auch an niemanden weitergegeben. Die Fragen werden auch extern nicht gespeichert, sondern sind nur im Facebook-Verlauf.\r\n  " +
+"Ansonsten sind sie aber für niemanden sichtbar und werden auch an niemanden weitergegeben. Die Fragen werden auch extern nicht gespeichert, sondern sind nur im Facebook-Verlauf. " +
 "Es ist dem Urheber vorbehalten diese Datennutzungsbestimmungen bei Bedarf zu ändern."
-); // Text der PP noch einfügen
+);
 });
 
 // Facebook Webhook
@@ -91,7 +91,7 @@ app.post('/webhook', function(req, res) {
         sendMessage(event.sender.id, {
           text: getTimeTableUrl(userInput)
         });
-      } else if (userInput === "hallo" || userInput === "hi" || userInput === "hey" || userInput === "hoi" || userInput === "salut") {
+      } else if (userInput === "hallo" || userInput === "hi" || userInput === "hey" || userInput === "hoi" || userInput === "salut" || userInput === "ciao") {
         sendMessage(event.sender.id, {
           text: randomAnswerForHello()
         });
@@ -183,7 +183,6 @@ function getCategoryFromInput(userInput) {
   });
 
   var categoryIndex = indexOfMax(sum);
-  // stopp absenzenheft from being default answer
   if (categoryIndex === 0&&sum[0]===0){
     return "";
   }
@@ -256,6 +255,9 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts und dann runter geht. "+
                "Die Umkleidekabinen findet man, wenn man noch eine Treppe runter geht und links den Gang entlang.";
     }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("turnhallen")){
+      answer = "Die Turnhallen findet man wenn man von der Freitreppe aus links am Brunnen vorbeigeht. Dann geht man bis zur Doppeltüre rechts, für die man keine Treppe runter muss. Dort hinein findet man die Turnhallen.";
+    }
     else if (relevantWords.includes ("wo")&& relevantWords.includes("turnhalle")&& relevantWords.includes("b")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann durch den Haupteingang läuft. "+
                "Wenn man die Treppe runterläuft und dann nach rechts geht ist die erste Turnhalle die Turnhalle B.";
@@ -272,26 +274,44 @@ function generateAnswer(relevantWords, estimatedCategory) {
   }
   else if (estimatedCategory === "stundenplan"){
     if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("zimmer")){
-      answer = "Das Zimmer sieht man auf dem Stundenplan jeweils auf der unteren Zeile die Zahl ganz rechts."
+      answer = "Das Zimmer sieht man auf dem Stundenplan jeweils auf der unteren Zeile die Zahl ganz rechts.";
     }
     else if (relevantWords.includes ("stunde")&& relevantWords.includes("sehe")&& relevantWords.includes("ausfällt")){
-      answer = "Ob eine Stunde ausfällt sieht man auf dem Stundenplan. Wenn eine Lektion rot durchgestrichen ist heisst dass, das die Stunde ausfällt."
+      answer = "Ob eine Stunde ausfällt sieht man auf dem Stundenplan. Wenn eine Lektion rot durchgestrichen ist heisst dass, das die Stunde ausfällt.";
     }
   }
   else if (estimatedCategory === "mensa"){
     if (relevantWords.includes("wie")&& relevantWords.includes("teuer")&& relevantWords.includes("essen")){
-      answer = "?"
+      answer = "?";
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("menüplan")){
-      answer = "?"
+      answer = "?";
     }
     else if (relevantWords.inludes("wie")&& relevantWords.includes("funktioniert")&& relevantWords.includes("rabattkarte")){
-      answer = "?"
+      answer = "?";
     }
   }
   else if (estimatedCategory === "lehrer"){
-    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("untericht")){
-      answer = "Man sieht alle Lehrer und ihre Unterichtszeiten auf einem Plan neben dem Lehrerzimmer. Das Lehrerzimmer findet man wenn man von dem Foyer aus richtung Aula läuft ist es die letze Tür vor dem Seiteneingang zur KZO."
+    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("unterichtet")){
+      answer = "Man sieht alle Lehrer und ihre Unterichtszeiten auf einem Plan neben dem Lehrerzimmer. Das Lehrerzimmer findet man wenn man von dem Foyer aus richtung Aula läuft ist es die letze Tür vor dem Seiteneingang zur KZO.";
+    }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("wann")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("schule")&& relevantWords.includes("hat")){
+      answer = "Beim Lehrerzimmer hat es einen grossen Plan bei dem man von jedem Lehrer sieht wann er wo Untericht hat.";
+    }
+    else if (relevantWords.includes("klasse")&& relevantWords.includes("hat")&& relevantWords.includes("mit")&& relevantWords.includes("lehrer")&& relevantWords.includes("problem")&& relevantWords.includes("was")){
+      answer = "Am besten Versucht ihr zuerst mit dem Lehrer über euer Problem zu sprechen. Falls das nicht weiter hilf kontaktiert ihr am besten euren Klassenlehrer und besprecht mit ihm was ihr jetzt am besten als nächstes machen solltet.";
+    }
+  }
+  else if (estimatedCategory === "online"){
+    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("online")&& relevantWords.includes("stundenplan")){
+      answer = "Unter https://intranet.tam.ch/kzo/ könnt ihr euch anmelden und dann unter der Leiste Stundenplan seht ihr euren jeweiligen Stundenplan mit allenfalls gestrichenen Stunden." +
+              ' Um auf diese Seite zu kommen könnt ihr auch gleich diesem<a href="https://intranet.tam.ch/kzo/">Link</a> folgen.';
+    }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("studmail")){
+      answer = 'Die Studmail findest du wenn du dich auf<a href="https://intranet.tam.ch/kzo/">dieser</a> Seite anmeldest. Dort siehst du dann oben rechts einen Briefumschlag. Wenn du den anklickts kommst du zu der Studmail.';
+    }
+    else if (relevantWords.includes("was")&& relevantWords.includes("email")&& relevantWords.includes("lehrer")){
+      answer = "Die E-Mail der Lehere ist immer vorname.nachname@kzo.ch . Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch "
     }
   }
   else {
