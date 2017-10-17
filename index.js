@@ -40,7 +40,7 @@ var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet
 var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer"];
 var importantWordsSlsUndMatur  = ["wann", "infos"];
 
-// Server frontpage
+// Server(Website) frontpage
 app.get('/', function (req, res) {
     res.send('Dies ist der Chatbot für die KZO. Wenn du mit mir reden möchtest komm mich doch auf Facebook besuchen. ' +
     ' Bitte folge diesem Link:<a href="https://www.facebook.com/Chatbot-1835882586663460/?ref=aymt_homepage_panel">hier</a>');
@@ -119,7 +119,6 @@ app.post('/webhook', function(req, res) {
         } else if (estimatedCategory === "sls und matur") {
           relevantWords = getRelevantWordsForAnswer(userInput, importantWordsSlsUndMatur);
         }
-        //TODO else case
 
         answer = generateAnswer(relevantWords, estimatedCategory);
 
@@ -225,7 +224,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
   var answer = "";
   if (estimatedCategory === "absenzenheft"){
     if (relevantWords.includes("wo")&& relevantWords.includes("neues")){
-      answer = "Ein neues Absenzenheft kanst du im Sekretariat holen. Dabei musst du aber entweder das volle Absenzenheft mitbringen, oder wenn du es verloren hast muss der Klassenlehrer unterschreiben dass du es verloren hast.";
+      answer = "Ein neues Absenzenheft kannst du im Sekretariat holen. Dabei musst du aber entweder das volle Absenzenheft mitbringen, oder wenn du es verloren hast, muss der Klassenlehrer unterschreiben, dass du es verloren hast.";
     }
     else if (relevantWords.includes("unterschreiben")) {
       answer = "Das Absenzenheft muss von deinen Eltern und von jedem Lehrer unterschrieben werden, bei dem du gefehlt hast. Ausserdem muss der Klassenlehrer ganz am Schluss unterschreiben. Sobald du 18 bist darfst dann du anstelle deiner Eltern unterschreiben, vorher jedoch nicht!";
@@ -244,10 +243,10 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Ja in freie Zimmer darf man rein.";
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("sportplatz")){
-      answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der nach rechts folgen und dann rechts über die Wiese gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
+      answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der Strasse nach rechts folgen und dann links über den Platz gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
     }
     else if (relevantWords.includes ("wie")&& relevantWords.includes("viel")&& relevantWords.includes("zeit")&& relevantWords.includes("sportplatz")&& relevantWords.includes("mehr")){
-      answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz hat kommen nochmals 3 Minuten hinzu. Das heisst eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion.";
+      answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz Sport hat kommen nochmals 3 Min uten hinzu. Das heisst eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion.";
     }
     else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("a")){
       answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts und dann runter geht. "+
@@ -280,13 +279,13 @@ function generateAnswer(relevantWords, estimatedCategory) {
   }
   else if (estimatedCategory === "mensa"){
     if (relevantWords.includes("wie")&& relevantWords.includes("teuer")&& relevantWords.includes("essen")){
-      answer = "?";
+      answer = "Ein warmes Menü mit Salat kostet in der Mensa 9 Fr. ohne Salat kostet es 8 Fr.";
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("menüplan")){
-      answer = "?";
+      answer = "Den Menüplan sieht man bei der Mensa unten wenn man die Treppe zur Mensa runtergeht auf der linken Seite bei der grossen Tafel.";
     }
     else if (relevantWords.inludes("wie")&& relevantWords.includes("funktioniert")&& relevantWords.includes("rabattkarte")){
-      answer = "?";
+      answer = "Die Mensakarte funktioniert so dass man zuerst für die volle Karte, also 12 Menüs und streicht dann immer einen Punkt ab wenn man ein Menü kauft. Wenn man seine 12 Menüs gekauft hat erhält man dann noch ein 13. Menü gratis!!!";
     }
   }
   else if (estimatedCategory === "lehrer"){
@@ -309,11 +308,11 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = 'Die Studmail findest du wenn du dich auf <a href="https://intranet.tam.ch/kzo/">dieser</a> Seite anmeldest. Dort siehst du dann oben rechts einen Briefumschlag. Wenn du den anklickts kommst du zu der Studmail.';
     }
     else if (relevantWords.includes("was")&& relevantWords.includes("email")&& relevantWords.includes("lehrer")){
-      answer = "Die E-Mail der Lehere ist immer vorname.nachname@kzo.ch. Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch "
+      answer = "Die E-Mail der Lehere ist immer vorname.nachname@kzo.ch. Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch ";
     }
   }
   else {
-    answer = "Sorry ich habe deine Frage nicht verstanden. Bitte beachte, dass ich nur Hochdeutsch verstehe. Falls du deine Frage in Hochdeutsch gestellt hast und ich deine Frage immernoch nicht verstehe, versuche die Frage anders zu formulieren.";
+    answer = "Sorry ich habe deine Frage nicht verstanden. Bitte beachte, dass ich nur Hochdeutsch verstehe. Falls du deine Frage in Hochdeutsch gestellt hast und ich deine Frage immer noch nicht verstehe, versuche die Frage anders zu formulieren. Wenn auch das nichts nützt kann es sein, dass ich auf deine Frage keine Antwort weiss. Ich bitte um Entschuldigung.";
   }
   return answer;
 }
