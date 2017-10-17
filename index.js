@@ -311,7 +311,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Die E-Mail der Lehere ist immer vorname.nachname@kzo.ch. Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch ";
     }
   }
-  if (answer === " ") {
+  if (answer === "") {
     answer = "Sorry ich habe deine Frage nicht verstanden. Bitte beachte, dass ich nur Hochdeutsch verstehe. Falls du deine Frage in Hochdeutsch gestellt hast und ich deine Frage immer noch nicht verstehe, versuche die Frage anders zu formulieren. Wenn auch das nichts nützt kann es sein, dass ich auf deine Frage keine Antwort weiss. Ich bitte um Entschuldigung.";
   }
   return answer;
