@@ -308,10 +308,10 @@ function generateAnswer(relevantWords, estimatedCategory) {
   }
   else if (estimatedCategory === "sls und matur"){
     if (relevantWords.includes("wann")&& relevantWords.includes("infos")&& relevantWords.includes("sls")){
-      answer = "Infos zum SLS erhält man im Verlauf der vierten Klasse "
+      answer = "Infos zum SLS erhält man im Verlauf der vierten Klasse."
     }
     else if (relevantWords.includes("wann")&& relevantWords.includes("infos")&& relevantWords.includes("matur")){
-      answer = "Infos zur Matur"
+      answer = "Infos zur Matur erhält man in Verlauf der fünften Klasse."
     }
   }
   if (answer === "") {
