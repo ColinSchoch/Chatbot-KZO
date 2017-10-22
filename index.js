@@ -10,6 +10,7 @@ app.listen((process.env.PORT || 3000));
 var categories = ["absenzenheft", "zimmer", "stundenplan", "mensa", "lehrer", "online", "sls und matur"];
 var data = {
   absenzenheft   : [10, 0, 0, 0, 0, 0, 0],
+  absentzenheft  : [10, 0, 0, 0, 0, 0, 0],
   unterschrift   : [10, 0, 0, 0, 0, 0, 0],
   unterschreiben : [10, 0, 0, 0, 0, 0, 0],
   zimmer         : [0, 6, 5, 0, 4, 0, 0],
