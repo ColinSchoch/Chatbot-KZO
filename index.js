@@ -274,7 +274,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Ob eine Stunde ausfällt, sieht man auf dem Stundenplan. Wenn eine Lektion rot durchgestrichen ist, fällt diei Stunde aus.";
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("finde") || relevantWords.includes("sehe")&& relevantWords.includes("stundenplan")){
-      answer = "Wenn du hier Stundenplan, gefolgt von deiner Klasse eingibst schicke ich dir einen Link welcher dir deinen Stundenplan zeigen wird. An der Schule hat es sonst auch zwei Bildschirme mit einem Stundenplan drauf. Der eine ist beim Foyer bei der Treppe und der andere findet man gegenüber dem Lehrerzimmer."
+      answer = "Wenn du hier Stundenplan, gefolgt von deiner Klasse eingibst schicke ich dir einen Link welcher dir deinen Stundenplan zeigen wird. An der Schule hat es sonst auch zwei Bildschirme mit einem Stundenplan drauf. Der eine ist beim Foyer bei der Treppe und der andere findet man gegenüber dem Lehrerzimmer.";
     }
   }
   else if (estimatedCategory === "mensa"){
@@ -310,15 +310,15 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Die E-Mail der Lehrpersonen ist immer vorname.nachname@kzo.ch. Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch ";
     }
     else if (relevantWords.includes("welche")&& relevantWords.includes("fragen")&& relevantWords.includes("du")&& relevantWords.includes("beantworten")){
-      answer = "Ich kann dir Fragen zum Absenzenheft, den Zimmern, dem Stundenplan, der Mensa, den Lehrpersonen, zu Onlinethemen und zum SLS und der Matur beantworten."
+      answer = "Ich kann dir Fragen zum Absenzenheft, den Zimmern, dem Stundenplan, der Mensa, den Lehrpersonen, zu Onlinethemen und zum SLS und der Matur beantworten.";
     }
   }
   else if (estimatedCategory === "sls und matur"){
     if (relevantWords.includes("wann")&& relevantWords.includes("infos")&& relevantWords.includes("sls")){
-      answer = "Infos zum SLS erhält man im Verlauf der vierten Klasse."
+      answer = "Infos zum SLS erhält man im Verlauf der vierten Klasse.";
     }
     else if (relevantWords.includes("wann")&& relevantWords.includes("infos")&& relevantWords.includes("matur")){
-      answer = "Infos zur Maturarbeit erhält man in Verlauf der fünften Klasse. Für die Maturaprüfungen selber erhält man dann erst relativ kurz vor den Prüfungen."
+      answer = "Infos zur Maturarbeit erhält man in Verlauf der fünften Klasse. Für die Maturaprüfungen selber erhält man dann erst relativ kurz vor den Prüfungen.";
     }
   }
   if (answer === "") {
