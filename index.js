@@ -29,7 +29,8 @@ var data = {
   studmail       : [0, 0, 0, 0, 0, 10, 0],
   email          : [0, 0, 0, 0, 0, 10, 0],
   sls            : [0, 0, 0, 0, 0, 0, 10],
-  matur          : [0, 0, 0, 0, 0, 0, 10]
+  matur          : [0, 0, 0, 0, 0, 0, 10],
+  fragen         : [0, 0, 0, 0, 0, 10, 0]
 };
 
 var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher"];
@@ -37,7 +38,7 @@ var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse"];
-var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online"];
+var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten"];
 var importantWordsSlsUndMatur  = ["wann", "infos", "sls", "matur"];
 
 // Server(Website) frontpage
@@ -272,6 +273,9 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes ("stunde")&& relevantWords.includes("sehe")&& relevantWords.includes("ausfällt")){
       answer = "Ob eine Stunde ausfällt, sieht man auf dem Stundenplan. Wenn eine Lektion rot durchgestrichen ist, fällt diei Stunde aus.";
     }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("finde") || relevantWords.includes("sehe")&& relevantWords.includes("stundenplan")){
+      answer = "Wenn du hier Stundenplan, gefolgt von deiner Klasse eingibst schicke ich dir einen Link welcher dir deinen Stundenplan zeigen wird. An der Schule hat es sonst auch zwei Bildschirme mit einem Stundenplan drauf. Der eine ist beim Foyer bei der Treppe und der andere findet man gegenüber dem Lehrerzimmer."
+    }
   }
   else if (estimatedCategory === "mensa"){
     if (relevantWords.includes("wie")&& relevantWords.includes("teuer")&& relevantWords.includes("essen")){
@@ -305,13 +309,16 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("was")&& relevantWords.includes("e-mail") || relevantWords.includes("email")&& relevantWords.includes("lehrer")){
       answer = "Die E-Mail der Lehrpersonen ist immer vorname.nachname@kzo.ch. Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch ";
     }
+    else if (relevantWords.includes("welche")&& relevantWords.includes("fragen")&& relevantWords.includes("du")&& relevantWords.includes("beantworten")){
+      answer = "Ich kann dir Fragen zum Absenzenheft, den Zimmern, dem Stundenplan, der Mensa, den Lehrpersonen, zu Onlinethemen und zum SLS und der Matur beantworten."
+    }
   }
   else if (estimatedCategory === "sls und matur"){
     if (relevantWords.includes("wann")&& relevantWords.includes("infos")&& relevantWords.includes("sls")){
       answer = "Infos zum SLS erhält man im Verlauf der vierten Klasse."
     }
     else if (relevantWords.includes("wann")&& relevantWords.includes("infos")&& relevantWords.includes("matur")){
-      answer = "Infos zur Matur erhält man in Verlauf der fünften Klasse."
+      answer = "Infos zur Maturarbeit erhält man in Verlauf der fünften Klasse. Für die Maturaprüfungen selber erhält man dann erst relativ kurz vor den Prüfungen."
     }
   }
   if (answer === "") {
