@@ -32,13 +32,13 @@ var data = {
   matur          : [0, 0, 0, 0, 0, 0, 10]
 };
 
-var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch"];
+var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher"];
 var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen"];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse"];
 var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online"];
-var importantWordsSlsUndMatur  = ["wann", "infos"];
+var importantWordsSlsUndMatur  = ["wann", "infos", "sls", "matur"];
 
 // Server(Website) frontpage
 app.get('/', function (req, res) {
@@ -124,7 +124,6 @@ app.post('/webhook', function(req, res) {
 
 
         sendMessage(event.sender.id, { text: answer });
-        //sendMessage(event.sender.id, {text: "Mirror: " + event.message.text});
       }
       res.sendStatus(200);
     }
@@ -145,27 +144,26 @@ function getRandom() {
   return Math.floor(num);
 }
 function checkIfTimetable(userInput) {
-  var classString = userInput.slice(-3);
-  var classes = ["a6" , "an6", "c6a", "c6b", "c6c", "m6a", "m6b", "n6a", "n6b", "nm6", "w6a", "w6b", "ac5", "an5", "c5a", "c5b", "c5c", "m5a", "m5b", "n5a", "n5b", "w5b", "wn5", "a4" , "c4a", "c4b", "c4c", "c4d", "cw4", "m4a", "m4b", "n4a", "n4b", "n4c", "w4" , "a3" , "c3a", "c3b", "c3c", "m3a", "m3b", "n3a", "n3b", "n3c", "n3d", "w3", "u2a", "u2b", "u2c", "u2d", "u2e", "u2f", "u2g", "u1a", "u1b", "u1c", "u1d", "u1e", "u1f"];
+  var classString = userInput.slice(-3).trim();
+  var classes = ["ac6", "an6", "c6a", "c6b", "c6c", "m6a", "m6b", "n6a", "n6b", "w6b", "wn6", "a5", "c5a", "c5b", "c5c", "c5d", "cw5", "m5a", "m5b", "n5a", "n5b", "n5c", "w5", "a4", "c4a", "c4b", "c4c", "m4a", "m4b", "n4a", "n4b", "n4c", "n4d", "w4", "a3", "c3a", "c3b", "c3c", "m3a", "m3b", "n3a", "n3b", "n3c", "w3a", "w3b", "u2a", "u2b", "u2c", "u2d", "u2e", "u2f", "u1a", "u1b", "u1c", "u1d", "u1e", "u1f"];
   var exists = classes.indexOf(classString) >= 0 ;
 
   return userInput.search("stundenplan") >= 0 && exists === true ;
 
 }
 function getTimeTableUrl(userInput) {
-  var classString = userInput.slice(-3);
-  var classes = ["a6" , "an6", "c6a", "c6b", "c6c", "m6a", "m6b", "n6a", "n6b", "nm6", "w6a", "w6b", "ac5", "an5", "c5a", "c5b", "c5c", "m5a", "m5b", "n5a", "n5b", "w5b", "wn5", "a4" , "c4a", "c4b", "c4c", "c4d", "cw4", "m4a", "m4b", "n4a", "n4b", "n4c", "w4" , "a3" , "c3a", "c3b", "c3c", "m3a", "m3b", "n3a", "n3b", "n3c", "n3d", "w3", "u2a", "u2b", "u2c", "u2d", "u2e", "u2f", "u2g", "u1a", "u1b", "u1c", "u1d", "u1e", "u1f"];
-  var keys    = [2020 , 2021 , 2017 , 2018 , 2019 , 2023 , 2026 , 2024 , 2027 , 2022 , 2025 , 2028 , 2006 , 2007 , 2010 , 2013 , 2016 , 2009 , 2012 , 2011 , 2014 , 2015 , 2008 , 1994 , 1998 , 2001 , 2003 , 2005 , 1995 , 1997 , 2000 , 1999 , 2002 , 2004 , 1996 , 1987 , 1988 , 1990 , 2034 , 2031 , 2033 , 1989 , 1991 , 1992 , 1993 , 2032 , 1979 , 1980 , 1981 , 1982 , 1983 , 1984 , 1985 , 1974 , 1975 , 1976 , 1977 , 1978 , 1986];
+  var classString = userInput.slice(-3).trim();
+  var classes = ["ac6", "an6", "c6a", "c6b", "c6c", "m6a", "m6b", "n6a", "n6b", "w6b", "wn6", "a5", "c5a", "c5b", "c5c", "c5d", "cw5", "m5a", "m5b", "n5a", "n5b", "n5c", "w5", "a4", "c4a", "c4b", "c4c", "m4a", "m4b", "n4a", "n4b", "n4c", "n4d", "w4", "a3", "c3a", "c3b", "c3c", "m3a", "m3b", "n3a", "n3b", "n3c", "w3a", "w3b", "u2a", "u2b", "u2c", "u2d", "u2e", "u2f", "u1a", "u1b", "u1c", "u1d", "u1e", "u1f"];
+  var keys    = [2087 , 2088 , 2091 , 2094 , 2097 , 2090 , 2093 , 2092 , 2095 , 2096 , 2089 , 2075 , 2079 , 2082 , 2084 , 2086 , 2076 , 2078 , 2081 , 2080 , 2083 , 2085 , 2077 , 2064 , 2067 , 2070 , 2072 , 2066 , 2069 , 2068 , 2071 , 2073 , 2074 , 2065 , 2053 , 2056 , 2057 , 2058 , 2054 , 2055 , 2059 , 2060 , 2061 , 2062 , 2063 , 2041 , 2042 , 2043 , 2044 , 2045 , 2046 , 2047 , 2048 , 2049 , 2050 , 2051 , 2052];
   var classindex = classes.indexOf(classString);
   var key = keys[classindex];
   var date = new Date() ;
   var today = date.getFullYear().toString() + "-" + (date.getMonth()+1).toString() + "-" + date.getDate().toString();
-  return "https://intranet.tam.ch/kzo/public/public-schedule?onlyTable=0&returnEntity=class&entityId=" + key + "&date=" + today + "&showBasicTimetable=0&width=99.99%25";
+  return "https://intranet.tam.ch/kzo/public/public-schedule?onlyTable=0&returnEntity=class&entityId=" + key + "&date=" + today + "&showBasicTimetable=0";
 }
 
 function getCategoryFromInput(userInput) {
   var words = userInput.split(" ");
-  //todo document this
   var results = [];
   words.forEach(function(word) {
     if (data[word]) {
@@ -223,7 +221,7 @@ function removePunctuation(userInput) {
 function generateAnswer(relevantWords, estimatedCategory) {
   var answer = "";
   if (estimatedCategory === "absenzenheft"){
-    if (relevantWords.includes("wo")&& relevantWords.includes("neues")){
+    if (relevantWords.includes("wo") || relevantWords.includes("woher")&& relevantWords.includes("neues")){
       answer = "Ein neues Absenzenheft kannst du im Sekretariat holen. Dabei musst du aber entweder das volle Absenzenheft mitbringen, oder wenn du es verloren hast, muss der Klassenlehrer unterschreiben, dass du es verloren hast.";
     }
     else if (relevantWords.includes("unterschreiben")) {
@@ -306,6 +304,14 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
     else if (relevantWords.includes("was")&& relevantWords.includes("e-mail") || relevantWords.includes("email")&& relevantWords.includes("lehrer")){
       answer = "Die E-Mail der Lehrpersonen ist immer vorname.nachname@kzo.ch. Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch ";
+    }
+  }
+  else if (estimatedCategory === "sls und matur"){
+    if (relevantWords.includes("wann")&& relevantWords.includes("infos")&& relevantWords.includes("sls")){
+      answer = "Infos zum SLS erhält man im Verlauf der vierten Klasse "
+    }
+    else if (relevantWords.includes("wann")&& relevantWords.includes("infos")&& relevantWords.includes("matur")){
+      answer = "Infos zur Matur"
     }
   }
   if (answer === "") {
