@@ -39,7 +39,7 @@ var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse"];
-var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten"];
+var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen"];
 var importantWordsSlsUndMatur  = ["wann", "infos", "sls", "matur"];
 
 // Server(Website) frontpage
@@ -312,6 +312,9 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
     else if (relevantWords.includes("welche")&& relevantWords.includes("fragen")&& relevantWords.includes("du")&& relevantWords.includes("beantworten")){
       answer = "Ich kann dir Fragen zum Absenzenheft, den Zimmern, dem Stundenplan, der Mensa, den Lehrpersonen, zu Onlinethemen und zum SLS und der Matur beantworten.";
+    }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("datennutzungsbestimmung") || relevantWords.includes("datennutzungsbestimmungen")){
+      answer = "Die Datennutzungsbestimmungen kannst du unter https://kzo-chatbot.herokuapp.com/Datennutzungsbestimmung einsehen.";
     }
   }
   else if (estimatedCategory === "sls und matur"){
