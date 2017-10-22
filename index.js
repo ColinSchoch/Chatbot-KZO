@@ -30,7 +30,7 @@ var data = {
   email          : [0, 0, 0, 0, 0, 10, 0],
   sls            : [0, 0, 0, 0, 0, 0, 10],
   matur          : [0, 0, 0, 0, 0, 0, 10],
-  fragen         : [0, 0, 0, 0, 0, 10, 0]
+  fragen         : [0, 0, 0, 0, 0, 9, 0]
 };
 
 var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher"];
@@ -285,7 +285,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Den Menüplan sieht man bei der Mensa unten, wenn man die Treppe zur Mensa hinuntergeht, auf der linken Seite bei der grossen Tafel.";
     }
     else if (relevantWords.inludes("wie")&& relevantWords.includes("funktioniert")&& relevantWords.includes("rabattkarte")){
-      answer = "Die Mensakarte funktioniert so, dass man zuerst für die volle Karte, also 12 Menüs bezahlt, und dann jedesmal wenn man ein Menü kauft einen Punkt abstreicht. Wenn man seine 12 Menüs gekauft hat erhält man dann noch ein 13. Menü gratis!!!";
+      answer = "Die Mensakarte funktioniert so, dass man zuerst für die volle Karte, also 12 Menüs bezahlt. Dann streicht man jedes mal wenn man ein Menü kauft einen Punkt ab. Wenn man seine 12 Menüs gekauft hat erhält man dann noch ein 13. Menü gratis!!!";
     }
   }
   else if (estimatedCategory === "lehrer"){
