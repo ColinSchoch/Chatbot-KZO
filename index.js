@@ -103,12 +103,7 @@ app.post('/webhook', function(req, res) {
         sendMessage(event.sender.id, {
           text: "42"
         });
-      } else if (userInput === "sp") {
-        sendMessage(event.sender.id, {
-          text: "https://intranet.tam.ch/kzo/public/public-schedule?onlyTable=0&returnEntity=class&entityId=2089" + "&date=" + date() + "&showBasicTimetable=0"
-        });
-      }
-       else {
+      } else {
         var estimatedCategory = getCategoryFromInput(userInput);
         var relevantWords = [];
         var answer = "";
@@ -225,11 +220,6 @@ function indexOfMax(arr) {
 
 function removePunctuation(userInput) {
   return userInput.replace(/[?.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-}
-function date() {
-  var date1 = new Date1() ;
-  var datetoday = date1.getFullYear().toString() + "-" + (date1.getMonth()+1).toString() + "-" + date1.getDate().toString();
-  return datetoday;
 }
 
 function generateAnswer(relevantWords, estimatedCategory) {
