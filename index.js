@@ -227,7 +227,8 @@ function removePunctuation(userInput) {
   return userInput.replace(/[?.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
 }
 function date() {
-  var datetoday = date.getFullYear().toString() + "-" + (date.getMonth()+1).toString() + "-" + date.getDate().toString();
+  var date1 = new Date1() ;
+  var datetoday = date1.getFullYear().toString() + "-" + (date1.getMonth()+1).toString() + "-" + date1.getDate().toString();
   return datetoday;
 }
 
