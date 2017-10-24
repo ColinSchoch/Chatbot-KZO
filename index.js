@@ -105,7 +105,7 @@ app.post('/webhook', function(req, res) {
         });
       } else if (userInput === "sp") {
         sendMessage(event.sender.id, {
-          text: "https://intranet.tam.ch/kzo/public/public-schedule?onlyTable=0&returnEntity=class&entityId=" + "2089" + "&date=" + today + "&showBasicTimetable=0";
+          text: "https://intranet.tam.ch/kzo/public/public-schedule?onlyTable=0&returnEntity=class&entityId=2089" + "&date=" + today() + "&showBasicTimetable=0";
         });
       }
        else {
