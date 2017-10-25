@@ -152,7 +152,7 @@ function checkIfTimetable(userInput) {
   var classes = ["ac6", "an6", "c6a", "c6b", "c6c", "m6a", "m6b", "n6a", "n6b", "w6b", "wn6", "a5", "c5a", "c5b", "c5c", "c5d", "cw5", "m5a", "m5b", "n5a", "n5b", "n5c", "w5", "a4", "c4a", "c4b", "c4c", "m4a", "m4b", "n4a", "n4b", "n4c", "n4d", "w4", "a3", "c3a", "c3b", "c3c", "m3a", "m3b", "n3a", "n3b", "n3c", "w3a", "w3b", "u2a", "u2b", "u2c", "u2d", "u2e", "u2f", "u1a", "u1b", "u1c", "u1d", "u1e", "u1f"];
   var exists = classes.indexOf(classString) >= 0 ;
 
-  return userInput.search("stundenplan") || userInput.search("sp") >= 0 && exists === true ;
+  return userInput.search("stundenplan") >= 0 && exists === true ;
 
 }
 function getTimeTableUrl(userInput) {
