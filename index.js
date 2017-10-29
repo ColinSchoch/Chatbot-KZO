@@ -36,7 +36,7 @@ var data = {
   datennutzungsbestimmungen : [0, 0, 0, 0, 0, 10, 0]
 };
 
-var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher"];
+var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher", "verloren"];
 var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen"];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte"];
@@ -236,6 +236,18 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
     else if (relevantWords.includes("wie")&& relevantWords.includes("urlaubsgesuch")&& relevantWords.includes("zeit")) {
       answer = "Um ein Urlaubsgesuch zu bekommen muss man die Unterschrift spätestens eine Woche vor dem Datum des Gesuchs holen.";
+    }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("urlaubsgesuch")) {
+      answer = "Für ein Urlaubsgesuch muss man vom Rektor eine Bewilligung erhalten.";
+    }
+    else if (relevantWords.includes("absenzenheft")&& relevantWords.includes("verloren")) {
+      answer = "Wenn man sein Absenzenheft verloren hat, kann man im Fundbüro danach fragen. Ansonsten muss man auf dem Sekretariat ein neues holen. Dafür braucht man jedoch die Unterschrift der Klassenlehrperson.";
+    }
+    else if (relevantWords.includes("wann")&& relevantWords.includes("urlaubsgesuch")) {
+    answer = "Um ein Urlaubsgesuch zu bekommen muss man die Unterschrift spätestens eine Woche vor dem Datum des Gesuchs holen.";
+    }
+    else if (relevantWords.includes("absenzenheft")&& relevantWords.includes("voll")) {
+      answer = "Wenn man ein volles Absenzenheft hat kann man auf dem Sekretariat ein neues holen. Man muss aber das volle Absenzenheft mitnehmen um ein neues zu bekommen.";
     }
   }
   else if (estimatedCategory === "zimmer"){
