@@ -225,7 +225,7 @@ function removePunctuation(userInput) {
 function generateAnswer(relevantWords, estimatedCategory) {
   var answer = "";
   if (estimatedCategory === "absenzenheft"){
-    if (relevantWords.includes("wo") || relevantWords.includes("woher")&& relevantWords.includes("neues")){
+    if (relevantWords.includes("wo") || relevantWords.includes("woher") || relevantWords.includes("wie") && relevantWords.includes("neues")){
       answer = "Ein neues Absenzenheft kannst du im Sekretariat holen. Dabei musst du aber entweder das volle Absenzenheft mitbringen, oder wenn du es verloren hast, muss der Klassenlehrer unterschreiben, dass du es verloren hast.";
     }
     else if (relevantWords.includes("unterschreiben")) {
