@@ -39,7 +39,7 @@ var data = {
 var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher", "verloren", "voll"];
 var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen"];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
-var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte"];
+var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte", "rabatkarte"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse"];
 var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen"];
 var importantWordsSlsUndMatur  = ["wann", "infos", "sls", "matur"];
@@ -254,30 +254,30 @@ function generateAnswer(relevantWords, estimatedCategory) {
     if (relevantWords.includes("darf")&& relevantWords.includes("rein")){
       answer = "Freie Zimmer darf man jederzeit betreten.";
     }
-    else if (relevantWords.includes("wo")&& relevantWords.includes("sportplatz")){
+    else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("sportplatz")){
       answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der Strasse nach rechts folgen und dann links über den Platz gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
     }
     else if (relevantWords.includes ("wie")&& relevantWords.includes("viel")&& relevantWords.includes("zeit")&& relevantWords.includes("sportplatz")&& relevantWords.includes("mehr")){
       answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz Sport hat, kommen nochmals 3 Minuten hinzu. Das bedeutet, eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion.";
     }
-    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("a")){
+    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("a")){
       answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts und dann hinunter geht. "+
                "Die Umkleidekabinen findet man wenn man noch eine Treppe hinunter geht und danach links den Gang entlang geht.";
     }
-    else if (relevantWords.includes("wo")&& (relevantWords.includes("turnhallen") || relevantWords.includes("sporthallen"))){
+    else if (relevantWords.includes("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhallen") || relevantWords.includes("sporthallen"))){
       answer = "Die Turnhallen findet man wenn man von der Freitreppe aus links am Brunnen vorbeigeht. Dann geht man bis zur Doppeltüre rechts, für die man keine Treppe runter muss. Dort befinden sich die Turnhallen.";
     }
-    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("b")){
+    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("b")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus in Richtung Turnhallen geht und dann durch den Haupteingang läuft. "+
                "Wenn man die Treppe hinuntergeht und dann nach rechts geht, ist die erste Turnhalle die Turnhalle B.";
     }
-    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("c")){
+    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("c")){
       answer = "Turnhalle C findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann nach unten geht. Wenn man die Treppe hinuntergeht und dann nach links geht, ist die erste Turnhalle die Turnhalle C.";
     }
-    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("d")){
+    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("d")){
       answer = "Turnhalle D findet man wenn man von der Freitreppe aus in Richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe hinuntergeht und dann nach rechts geht, muss man an einer Turnhalle vorbei gehen und die hintere ist dann die Turnhalle D.";
     }
-    else if (relevantWords.includes ("wo")&& (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("e")){
+    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("e")){
       answer = "Turnhalle E findet man wenn man von der Freitreppe aus in Richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe hinuntergeht und dann nach links an der Turnhalle C vorbeigeht, kommt man zur Turnhalle E.";
     }
   }
@@ -299,8 +299,11 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wo")&& relevantWords.includes("menüplan")){
       answer = "Den Menüplan sieht man bei der Mensa unten, wenn man die Treppe zur Mensa hinuntergeht, auf der linken Seite bei der grossen Tafel.";
     }
-    else if (relevantWords.inludes("wie")&& relevantWords.includes("funktioniert")&& relevantWords.includes("rabattkarte")){
+    else if (relevantWords.inludes("wie")&& relevantWords.includes("funktioniert")&& relevantWords.includes("rabattkarte") || relevantWords.includes("rabatkarte")){
       answer = "Die Mensakarte funktioniert so, dass man zuerst für die volle Karte, also 12 Menüs bezahlt. Dann streicht man jedes mal wenn man ein Menü kauft einen Punkt ab. Wenn man seine 12 Menüs gekauft hat erhält man dann noch ein 13. Menü gratis!!!";
+    }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("rabattkarte") || relevantWords.includes("rabatkarte")){
+      answer = "Eine Rabattkarte kann man in der Mensa an der Kasse holen.";
     }
   }
   else if (estimatedCategory === "lehrer"){
