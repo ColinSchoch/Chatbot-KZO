@@ -10,6 +10,7 @@ app.listen((process.env.PORT || 3000));
 var categories = ["absenzenheft", "zimmer", "stundenplan", "mensa", "lehrer", "online", "sls und matur"];
 var data = {
   absenzenheft              : [10, 0, 0, 0, 0, 0, 0],
+  urlaubsgesuch             : [10, 0, 0, 0, 0, 0, 0],
   absentzenheft             : [10, 0, 0, 0, 0, 0, 0],
   unterschrift              : [10, 0, 0, 0, 0, 0, 0],
   unterschreiben            : [10, 0, 0, 0, 0, 0, 0],
@@ -17,7 +18,7 @@ var data = {
   sportplatz                : [0, 10, 2, 0, 0, 0, 0],
   zeit                      : [2, 5, 5, 2, 5, 2, 1],
   turnhalle                 : [0, 10, 2, 0, 0, 0, 0],
-  sporthalle                 : [0, 10, 2, 0, 0, 0, 0],
+  sporthalle                : [0, 10, 2, 0, 0, 0, 0],
   stundenplan               : [0, 5, 7, 0, 6, 5, 0],
   lektion                   : [0, 0, 8, 0, 5, 0, 0],
   essen                     : [0, 0, 0, 10, 0, 0, 0],
@@ -37,7 +38,7 @@ var data = {
   datennutzungsbestimmungen : [0, 0, 0, 0, 0, 10, 0]
 };
 
-var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher", "verloren", "voll", "absenzenheft"];
+var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher", "verloren", "voll", "absenzenheft", "wann"];
 var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen"];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte", "rabatkarte"];
