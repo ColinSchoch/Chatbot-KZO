@@ -308,7 +308,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wo")&& relevantWords.includes("menüplan")){
       answer = "Den Menüplan sieht man bei der Mensa unten, wenn man die Treppe zur Mensa hinuntergeht, auf der linken Seite bei der grossen Tafel.";
     }
-    else if (relevantWords.inludes("wie")&& relevantWords.includes("funktioniert")&& relevantWords.includes("rabattkarte") || relevantWords.includes("rabatkarte")){
+    else if (relevantWords.includes("wie")&& relevantWords.includes("funktioniert")&& relevantWords.includes("rabattkarte") || relevantWords.includes("rabatkarte")){
       answer = "Die Mensakarte funktioniert so, dass man zuerst für die volle Karte, also 12 Menüs bezahlt. Dann streicht man jedes mal wenn man ein Menü kauft einen Punkt ab. Wenn man seine 12 Menüs gekauft hat erhält man dann noch ein 13. Menü gratis!!!";
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("rabattkarte") || relevantWords.includes("rabatkarte")){
