@@ -257,6 +257,9 @@ function generateAnswer(relevantWords, estimatedCategory) {
     if (relevantWords.includes("darf")&& relevantWords.includes("rein")){
       answer = "Freie Zimmer darf man jederzeit betreten.";
     }
+    else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("sportplatz")){
+      answer = "Um zum Sportplatz zu kommen braucht man etwa 5 Minuten.";
+    }
     else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("sportplatz")){
       answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der Strasse nach rechts folgen und dann links über den Platz gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
     }
@@ -282,9 +285,6 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
     else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("e")){
       answer = "Turnhalle E findet man wenn man von der Freitreppe aus in Richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe hinuntergeht und dann nach links an der Turnhalle C vorbeigeht, kommt man zur Turnhalle E.";
-    }
-    else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("sportplatz")){
-      answer = "Um zum Sportplatz zu kommen braucht man etwa 5 Minuten.";
     }
     else if (relevantWords.includes("verloren")){
       answer = "Wenn man etwas verloren hat und es eine andere Person gefunden hat kann man den verlorenen Gegenstand im Fundbüro abholen. Etwas aus dem Fundbüro zu entnehmen kostet 2 Franken. Das Fundbüro ist gleich beim Foyer.";
