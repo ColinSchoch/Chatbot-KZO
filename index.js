@@ -35,15 +35,16 @@ var data = {
   matur                     : [0, 0, 0, 0, 0, 0, 10],
   fragen                    : [0, 0, 0, 0, 0, 9, 0],
   datennutzungsbestimmung   : [0, 0, 0, 0, 0, 10, 0],
-  datennutzungsbestimmungen : [0, 0, 0, 0, 0, 10, 0]
+  datennutzungsbestimmungen : [0, 0, 0, 0, 0, 10, 0],
+  verloren                  : [5, 10, 0, 0, 0, 0, 0]
 };
 
 var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher", "verloren", "voll", "absenzenheft", "wann"];
-var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "Zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen"];
+var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen", "lange", "sportplatz", "verloren" ];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
-var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte", "rabatkarte"];
-var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse"];
-var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen"];
+var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte", "rabatkarte", "mensa"];
+var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse", "wie"];
+var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen", "wie"];
 var importantWordsSlsUndMatur  = ["wann", "infos", "sls", "matur"];
 
 // Server(Website) frontpage
@@ -242,7 +243,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wo")&& relevantWords.includes("urlaubsgesuch")) {
       answer = "Für ein Urlaubsgesuch muss man vom Rektor eine Bewilligung erhalten.";
     }
-    else if (relevantWords.includes("verloren")) {
+    else if (relevantWords.includes("verloren")&& relevantWords.includes("absenzenheft")) {
       answer = "Wenn man sein Absenzenheft verloren hat, kann man im Fundbüro danach fragen. Ansonsten muss man auf dem Sekretariat ein neues holen. Dafür braucht man jedoch die Unterschrift der Klassenlehrperson.";
     }
     else if (relevantWords.includes("wann")&& relevantWords.includes("urlaubsgesuch")) {
@@ -282,6 +283,12 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("e")){
       answer = "Turnhalle E findet man wenn man von der Freitreppe aus in Richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe hinuntergeht und dann nach links an der Turnhalle C vorbeigeht, kommt man zur Turnhalle E.";
     }
+    else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("sportplatz")){
+      answer = "Um zum Sportplatz zu kommen braucht man etwa 5 Minuten.";
+    }
+    else if (relevantWords.includes("verloren")){
+      answer = "Wenn man etwas verloren hat und es eine andere Person gefunden hat kann man den verlorenen Gegenstand im Fundbüro abholen. Etwas aus dem Fundbüro zu entnehmen kostet 2 Franken. Das Fundbüro ist gleich beim Foyer.";
+    }
   }
   else if (estimatedCategory === "stundenplan"){
     if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("zimmer")){
@@ -307,23 +314,26 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wo")&& relevantWords.includes("rabattkarte") || relevantWords.includes("rabatkarte")){
       answer = "Eine Rabattkarte kann man in der Mensa an der Kasse holen.";
     }
+    else if (relevantWords.includes("mensa")){
+      answer = "Die Mensa ist die Kantine der KZO. Man kann täglich dort etwas zu Mittag essen. Die Mensa findet man wenn man beim Foyer die Treppe hinunter geht.";
+    }
   }
   else if (estimatedCategory === "lehrer"){
-    if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("unterichtet")){
+    if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("unterichtet")){
       answer = "Man sieht alle Lehrer und ihre Unterichtszeiten auf dem Plan neben dem Lehrerzimmer. Das Lehrerzimmer findet man wenn man von dem Foyer aus in Richtung Aula läuft. Es ist es die letze Tür vor dem Seiteneingang zur KZO.";
     }
-    else if (relevantWords.includes("wo")&& relevantWords.includes("sehe")&& relevantWords.includes("wann")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("schule")&& relevantWords.includes("hat")){
+    else if (relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("sehe")&& relevantWords.includes("wann")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("schule")&& relevantWords.includes("hat")){
       answer = "Beim Lehrerzimmer hat es einen grossen Plan wo man von jeder Lehrperson sieht wann diese wo unterrichtet.";
     }
-    else if (relevantWords.includes("klasse")&& relevantWords.includes("hat")&& relevantWords.includes("mit")&& relevantWords.includes("lehrer")&& relevantWords.includes("problem")&& relevantWords.includes("was")){
-      answer = "Am besten zuerst mit der betroffenen Lehrperson über das Problem sprechen. Falls das nicht hilft, den Klassenlehrer kontaktieren und mit ihm/ihr die nächsten Schritte besprechen.";
+    else if (relevantWords.includes("klasse")&& relevantWords.includes("hat")&& relevantWords.includes("mit")&& relevantWords.includes("lehrer")&& relevantWords.includes("problem")){
+      answer = "Am besten sprecht ihr zuerst mit der betroffenen Lehrperson über das Problem. Falls das nicht hilft, den Klassenlehrer kontaktieren und mit ihm/ihr die nächsten Schritte besprechen.";
     }
   }
   else if (estimatedCategory === "online"){
-    if (relevantWords.includes("wo")&& relevantWords.includes("online")&& relevantWords.includes("stundenplan")){
+    if (relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("online")&& relevantWords.includes("stundenplan")){
       answer = "Unter https://intranet.tam.ch/kzo/ kann man sich anmelden und dann unter der Leiste 'Stundenplan' den jeweiligen Stundenplan mit allenfalls gestrichenen Stunden einsehen.";
     }
-    else if (relevantWords.includes("wo")&& relevantWords.includes("studmail")){
+    else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("studmail")){
       answer = 'Die Studmail findest du wenn du dich im Intranet, "https://intranet.tam.ch/kzo/", anmeldest. Über den Briefumschlag oben rechts kommst du zu der Studmail.';
     }
     else if (relevantWords.includes("was")&& relevantWords.includes("e-mail") || relevantWords.includes("email")&& relevantWords.includes("lehrer")){
@@ -332,7 +342,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("welche")&& relevantWords.includes("fragen")&& relevantWords.includes("du")&& relevantWords.includes("beantworten")){
       answer = "Ich kann dir Fragen zum Absenzenheft, den Zimmern, dem Stundenplan, der Mensa, den Lehrpersonen, zu Onlinethemen und zum SLS und der Matur beantworten.";
     }
-    else if (relevantWords.includes("wo")&& relevantWords.includes("datennutzungsbestimmung") || relevantWords.includes("datennutzungsbestimmungen")){
+    else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("datennutzungsbestimmung") || relevantWords.includes("datennutzungsbestimmungen")){
       answer = "Die Datennutzungsbestimmungen kannst du unter https://kzo-chatbot.herokuapp.com/Datennutzungsbestimmung einsehen.";
     }
   }
