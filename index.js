@@ -340,7 +340,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
   }
   else if (estimatedCategory === "online"){
-    if (relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("online")&& relevantWords.includes("stundenplan")){
+    if (relevantWords.includes("stundenplan") && relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("online")){
       answer = "Unter https://intranet.tam.ch/kzo/ kann man sich anmelden und dann unter der Leiste 'Stundenplan' den jeweiligen Stundenplan mit allenfalls gestrichenen Stunden einsehen.";
     }
     else if (relevantWords.includes("studmail") && relevantWords.includes("wo") || relevantWords.includes("wie")){
