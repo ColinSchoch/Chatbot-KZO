@@ -40,7 +40,7 @@ var data = {
 };
 
 var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher", "verloren", "voll", "absenzenheft", "wann"];
-var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen", "lange", "sportplatz", "verloren" ];
+var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen", "lange", "sportplatz", "verloren", "haupttrakt" ];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte", "rabatkarte", "mensa"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse", "wie"];
@@ -288,6 +288,9 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
     else if (relevantWords.includes("verloren")){
       answer = "Wenn man etwas verloren hat und es eine andere Person gefunden hat kann man den verlorenen Gegenstand im Fundbüro abholen. Etwas aus dem Fundbüro zu entnehmen kostet 2 Franken. Das Fundbüro ist gleich beim Foyer.";
+    }
+    else if (relevantWords.includes("wo") && relevantWords.includes("haupttrakt"){
+      answer = "Der Haupttrakt ist das grosse Gebäude in das man kommt, wenn man die KZO über die Freitreppe betritt.";
     }
   }
   else if (estimatedCategory === "stundenplan"){
