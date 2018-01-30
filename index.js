@@ -10,6 +10,8 @@ app.listen((process.env.PORT || 3000));
 var categories = ["absenzenheft", "zimmer", "stundenplan", "mensa", "lehrer", "online", "sls und matur"];
 var data = {
   absenzenheft              : [10, 0, 0, 0, 0, 0, 0],
+  absenzen                  : [10, 0, 0, 0, 0, 0, 0],
+  absentzen                 : [10, 0, 0, 0, 0, 0, 0],
   urlaubsgesuch             : [10, 0, 0, 0, 0, 0, 0],
   absentzenheft             : [10, 0, 0, 0, 0, 0, 0],
   unterschrift              : [10, 0, 0, 0, 0, 0, 0],
@@ -37,6 +39,9 @@ var data = {
   datennutzungsbestimmung   : [0, 0, 0, 0, 0, 10, 0],
   haupttrakt                : [0, 10, 0, 0, 0, 0, 0],
   datennutzungsbestimmungen : [0, 0, 0, 0, 0, 10, 0],
+  webseite                  : [0, 0, 0, 0, 0, 10, 0],
+  kzo                       : [0, 0, 0, 0, 0, 7, 0],
+  bot                       : [0, 0, 0, 0, 0, 8, 0],
   verloren                  : [5, 10, 0, 0, 0, 0, 0]
 };
 
@@ -45,7 +50,7 @@ var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "zeit", "
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte", "rabatkarte", "mensa"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse", "wie"];
-var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen", "wie"];
+var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen", "wie", "kzo", "webseite", "bot"];
 var importantWordsSlsUndMatur  = ["wann", "infos", "sls", "matur"];
 
 // Server(Website) frontpage
@@ -339,6 +344,12 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
     else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("studmail")){
       answer = 'Die Studmail findest du wenn du dich im Intranet, "https://intranet.tam.ch/kzo/", anmeldest. Über den Briefumschlag oben rechts kommst du zu der Studmail.';
+    }
+    else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("kzo")&& relevantWords.includes("webseite")){
+      answer = 'Die KZO-Webseite findet man unter https://www.kzo.ch/';
+    }
+    else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("bot")&& relevantWords.includes("webseite")){
+      answer = 'Die Webseite des Bots findet man unter https://kzo-chatbot.herokuapp.com/';
     }
     else if (relevantWords.includes("was")&& relevantWords.includes("e-mail") || relevantWords.includes("email")&& relevantWords.includes("lehrer")){
       answer = "Die E-Mail der Lehrpersonen ist immer vorname.nachname@kzo.ch. Dasselbe gilt auch für die Schüler, ausser dass nach dem @ noch ein studmail hinzukommt. Zum Beispiel so: mike.kobelt@studmail.kzo.ch ";
