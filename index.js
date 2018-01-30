@@ -261,9 +261,6 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("sportplatz")){
       answer = "Um zum Sportplatz zu kommen braucht man etwa 5 Minuten.";
     }
-    else if (relevantWords.includes("wie") || relevantWords.includes("wo")&& relevantWords.includes("sportplatz")){
-      answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der Strasse nach rechts folgen und dann links über den Platz gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
-    }
     else if (relevantWords.includes ("wie")&& relevantWords.includes("viel")&& relevantWords.includes("zeit")&& relevantWords.includes("sportplatz")&& relevantWords.includes("mehr")){
       answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz Sport hat, kommen nochmals 3 Minuten hinzu. Das bedeutet, eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion.";
     }
