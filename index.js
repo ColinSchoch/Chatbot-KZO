@@ -26,6 +26,7 @@ var data = {
   essen                     : [0, 0, 0, 10, 0, 0, 0],
   mensa                     : [0, 0, 0, 10, 0, 0, 0],
   rabattkarte               : [0, 0, 0, 10, 0, 0, 0],
+  rabatkarte               : [0, 0, 0, 10, 0, 0, 0],
   lehrer                    : [5, 0, 0, 0, 10, 5, 0],
   unterricht                : [0, 0, 5, 0, 6, 0, 0],
   klasse                    : [0, 2, 2, 0, 6, 0, 0],
@@ -161,7 +162,7 @@ function checkIfTimetable(userInput) {
   var classes = ["ac6", "an6", "c6a", "c6b", "c6c", "m6a", "m6b", "n6a", "n6b", "w6b", "wn6", "a5", "c5a", "c5b", "c5c", "c5d", "cw5", "m5a", "m5b", "n5a", "n5b", "n5c", "w5", "a4", "c4a", "c4b", "c4c", "m4a", "m4b", "n4a", "n4b", "n4c", "n4d", "w4", "a3", "c3a", "c3b", "c3c", "m3a", "m3b", "n3a", "n3b", "n3c", "w3a", "w3b", "u2a", "u2b", "u2c", "u2d", "u2e", "u2f", "u1a", "u1b", "u1c", "u1d", "u1e", "u1f"];
   var exists = classes.indexOf(classString) >= 0 ;
 
-  return userInput.search("stundenplan") >= 0 || userInput.search("sp") >= 0 && exists === true ;
+  return userInput.search("sp") >= 0 && exists === true ;
 
 }
 function getTimeTableUrl(userInput) {
@@ -234,7 +235,7 @@ function removePunctuation(userInput) {
 function generateAnswer(relevantWords, estimatedCategory) {
   var answer = "";
   if (estimatedCategory === "absenzenheft"){
-    if (relevantWords.includes("wo") || relevantWords.includes("woher") || relevantWords.includes("wie") && relevantWords.includes("neues")){
+    if (relevantWords.includes("neues")&& relevantWords.includes("wo") || relevantWords.includes("woher") || relevantWords.includes("wie")){
       answer = "Ein neues Absenzenheft kannst du im Sekretariat holen. Dabei musst du aber entweder das volle Absenzenheft mitbringen, oder wenn du es verloren hast, muss der Klassenlehrer unterschreiben, dass du es verloren hast.";
     }
     else if (relevantWords.includes("unterschreiben")) {
@@ -269,30 +270,30 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes ("wie")&& relevantWords.includes("viel")&& relevantWords.includes("zeit")&& relevantWords.includes("sportplatz")&& relevantWords.includes("mehr")){
       answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz Sport hat, kommen nochmals 3 Minuten hinzu. Das bedeutet, eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion.";
     }
-    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("a")){
+    else if (relevantWords.includes("a") && relevantWords.includes ("wo") || relevantWords.includes("wie") && relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle")){
       answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts und dann hinunter geht. "+
                "Die Umkleidekabinen findet man wenn man noch eine Treppe hinunter geht und danach links den Gang entlang geht.";
     }
-    else if (relevantWords.includes("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhallen") || relevantWords.includes("sporthallen"))){
+    else if (relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("turnhallen") || relevantWords.includes("sporthallen"))){
       answer = "Die Turnhallen findet man wenn man von der Freitreppe aus links am Brunnen vorbeigeht. Dann geht man bis zur Doppeltüre rechts, für die man keine Treppe runter muss. Dort befinden sich die Turnhallen.";
     }
-    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("b")){
+    else if (relevantWords.includes("b") && relevantWords.includes ("wo") || relevantWords.includes("wie") && relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle")){
       answer = "Turnhalle B findet man wenn man von der Freitreppe aus in Richtung Turnhallen geht und dann durch den Haupteingang läuft. "+
                "Wenn man die Treppe hinuntergeht und dann nach rechts geht, ist die erste Turnhalle die Turnhalle B.";
     }
-    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("c")){
+    else if (relevantWords.includes("c") && relevantWords.includes ("wo") || relevantWords.includes("wie") && relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle")){
       answer = "Turnhalle C findet man wenn man von der Freitreppe aus richtung Turnhallen geht und dann nach unten geht. Wenn man die Treppe hinuntergeht und dann nach links geht, ist die erste Turnhalle die Turnhalle C.";
     }
-    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("d")){
+    else if ( relevantWords.includes("d") && relevantWords.includes ("wo") || relevantWords.includes("wie") && relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle")){
       answer = "Turnhalle D findet man wenn man von der Freitreppe aus in Richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe hinuntergeht und dann nach rechts geht, muss man an einer Turnhalle vorbei gehen und die hintere ist dann die Turnhalle D.";
     }
-    else if (relevantWords.includes ("wo") || relevantWords.includes("wie") && (relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle"))&& relevantWords.includes("e")){
+    else if (relevantWords.includes("e") && relevantWords.includes ("wo") || relevantWords.includes("wie") && relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle")){
       answer = "Turnhalle E findet man wenn man von der Freitreppe aus in Richtung Turnhallen geht und dann durch den Haupteingang läuft. Wenn man die Treppe hinuntergeht und dann nach links an der Turnhalle C vorbeigeht, kommt man zur Turnhalle E.";
     }
     else if (relevantWords.includes("verloren")){
       answer = "Wenn man etwas verloren hat und es eine andere Person gefunden hat kann man den verlorenen Gegenstand im Fundbüro abholen. Etwas aus dem Fundbüro zu entnehmen kostet 2 Franken. Das Fundbüro ist gleich beim Foyer.";
     }
-    else if (relevantWords.includes("wie") || relevantWords.includes("wo")&& relevantWords.includes("sportplatz")){
+    else if (relevantWords.includes("sportplatz") && relevantWords.includes("wie") || relevantWords.includes("wo")){
       answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der Strasse nach rechts folgen und dann links über den Platz gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
     }
     else if (relevantWords.includes("wo") && relevantWords.includes("haupttrakt")){
@@ -307,7 +308,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Ob eine Stunde ausfällt, sieht man auf dem Stundenplan. Wenn eine Lektion rot durchgestrichen ist, fällt diei Stunde aus.";
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("finde") || relevantWords.includes("sehe") || relevantWords.includes("finden")&& relevantWords.includes("stundenplan")){
-      answer = "Wenn du hier Stundenplan, gefolgt von deiner Klasse eingibst schicke ich dir einen Link welcher dir deinen Stundenplan zeigen wird. An der Schule hat es sonst auch zwei Bildschirme mit einem Stundenplan drauf. Der eine ist beim Foyer bei der Treppe und der andere findet man gegenüber dem Lehrerzimmer.";
+      answer = "Wenn du hier sp, gefolgt von deiner Klasse eingibst schicke ich dir einen Link welcher dir deinen Stundenplan zeigen wird. An der Schule hat es sonst auch zwei Bildschirme mit einem Stundenplan drauf. Der eine ist beim Foyer bei der Treppe und der andere findet man gegenüber dem Lehrerzimmer.";
     }
   }
   else if (estimatedCategory === "mensa"){
@@ -328,10 +329,10 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
   }
   else if (estimatedCategory === "lehrer"){
-    if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("sehe")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("unterichtet")){
+    if ( relevantWords.includes("sehe") && relevantWords.includes("wo")  || relevantWords.includes("wie")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("unterichtet")){
       answer = "Man sieht alle Lehrer und ihre Unterichtszeiten auf dem Plan neben dem Lehrerzimmer. Das Lehrerzimmer findet man wenn man von dem Foyer aus in Richtung Aula läuft. Es ist es die letze Tür vor dem Seiteneingang zur KZO.";
     }
-    else if (relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("sehe")&& relevantWords.includes("wann")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("schule")&& relevantWords.includes("hat")){
+    else if (relevantWords.includes("sehe") && relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("wann")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("schule")&& relevantWords.includes("hat")){
       answer = "Beim Lehrerzimmer hat es einen grossen Plan wo man von jeder Lehrperson sieht wann diese wo unterrichtet.";
     }
     else if (relevantWords.includes("klasse")&& relevantWords.includes("hat")&& relevantWords.includes("mit")&& relevantWords.includes("lehrer")&& relevantWords.includes("problem")){
@@ -342,13 +343,13 @@ function generateAnswer(relevantWords, estimatedCategory) {
     if (relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("online")&& relevantWords.includes("stundenplan")){
       answer = "Unter https://intranet.tam.ch/kzo/ kann man sich anmelden und dann unter der Leiste 'Stundenplan' den jeweiligen Stundenplan mit allenfalls gestrichenen Stunden einsehen.";
     }
-    else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("studmail")){
+    else if (relevantWords.includes("studmail") && relevantWords.includes("wo") || relevantWords.includes("wie")){
       answer = 'Die Studmail findest du wenn du dich im Intranet, "https://intranet.tam.ch/kzo/", anmeldest. Über den Briefumschlag oben rechts kommst du zu der Studmail.';
     }
-    else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("kzo")&& relevantWords.includes("webseite")){
+    else if (relevantWords.includes("webseite") && relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("kzo")){
       answer = 'Die KZO-Webseite findet man unter https://www.kzo.ch/';
     }
-    else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("bot")&& relevantWords.includes("webseite")){
+    else if (relevantWords.includes("webseite") && relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("bot")){
       answer = 'Die Webseite des Bots findet man unter https://kzo-chatbot.herokuapp.com/';
     }
     else if (relevantWords.includes("was")&& relevantWords.includes("e-mail") || relevantWords.includes("email")&& relevantWords.includes("lehrer")){
