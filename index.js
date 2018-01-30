@@ -261,7 +261,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("sportplatz")){
       answer = "Um zum Sportplatz zu kommen braucht man etwa 5 Minuten.";
     }
-    else if (relevantWords.includes("wo") || relevantWords.includes("wie")&& relevantWords.includes("sportplatz")){
+    else if (relevantWords.includes("wie") || relevantWords.includes("wo")&& relevantWords.includes("sportplatz")){
       answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der Strasse nach rechts folgen und dann links über den Platz gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
     }
     else if (relevantWords.includes ("wie")&& relevantWords.includes("viel")&& relevantWords.includes("zeit")&& relevantWords.includes("sportplatz")&& relevantWords.includes("mehr")){
