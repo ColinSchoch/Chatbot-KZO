@@ -289,7 +289,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("verloren")){
       answer = "Wenn man etwas verloren hat und es eine andere Person gefunden hat kann man den verlorenen Gegenstand im Fundbüro abholen. Etwas aus dem Fundbüro zu entnehmen kostet 2 Franken. Das Fundbüro ist gleich beim Foyer.";
     }
-    else if (relevantWords.includes("wo") && relevantWords.includes("haupttrakt"){
+    else if (relevantWords.includes("wo") && relevantWords.includes("haupttrakt")){
       answer = "Der Haupttrakt ist das grosse Gebäude in das man kommt, wenn man die KZO über die Freitreppe betritt.";
     }
   }
