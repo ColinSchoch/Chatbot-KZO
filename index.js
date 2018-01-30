@@ -332,7 +332,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     if ( relevantWords.includes("sehe") && relevantWords.includes("wo")  || relevantWords.includes("wie")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("unterichtet")){
       answer = "Man sieht alle Lehrer und ihre Unterichtszeiten auf dem Plan neben dem Lehrerzimmer. Das Lehrerzimmer findet man wenn man von dem Foyer aus in Richtung Aula läuft. Es ist es die letze Tür vor dem Seiteneingang zur KZO.";
     }
-    else if (relevantWords.includes("sehe") && relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("wann")&& relevantWords.includes("welcher")&& relevantWords.includes("lehrer")&& relevantWords.includes("schule")&& relevantWords.includes("hat")){
+    else if (relevantWords.includes("welcher") && relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("wann")&& relevantWords.includes("sehe")&& relevantWords.includes("lehrer")&& relevantWords.includes("schule")&& relevantWords.includes("hat")){
       answer = "Beim Lehrerzimmer hat es einen grossen Plan wo man von jeder Lehrperson sieht wann diese wo unterrichtet.";
     }
     else if (relevantWords.includes("klasse")&& relevantWords.includes("hat")&& relevantWords.includes("mit")&& relevantWords.includes("lehrer")&& relevantWords.includes("problem")){
