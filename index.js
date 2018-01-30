@@ -274,7 +274,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Turnhalle A findet man wenn man von der Freitreppe aus zu den Turnhallen läuft und dann gleich nach der Treppe rechts und dann hinunter geht. "+
                "Die Umkleidekabinen findet man wenn man noch eine Treppe hinunter geht und danach links den Gang entlang geht.";
     }
-    else if (relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("turnhallen") || relevantWords.includes("sporthallen"))){
+    else if (relevantWords.includes("wo") || relevantWords.includes("wie") && relevantWords.includes("turnhallen") || relevantWords.includes("sporthallen")){
       answer = "Die Turnhallen findet man wenn man von der Freitreppe aus links am Brunnen vorbeigeht. Dann geht man bis zur Doppeltüre rechts, für die man keine Treppe runter muss. Dort befinden sich die Turnhallen.";
     }
     else if (relevantWords.includes("b") && relevantWords.includes ("wo") || relevantWords.includes("wie") && relevantWords.includes("turnhalle") || relevantWords.includes("sporthalle")){
