@@ -287,6 +287,9 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("verloren")){
       answer = "Wenn man etwas verloren hat und es eine andere Person gefunden hat kann man den verlorenen Gegenstand im Fundbüro abholen. Etwas aus dem Fundbüro zu entnehmen kostet 2 Franken. Das Fundbüro ist gleich beim Foyer.";
     }
+    else if (relevantWords.includes("wie") || relevantWords.includes("wo")&& relevantWords.includes("sportplatz")){
+      answer = "Den Sportplatz findet man gerade hinter der Eishalle. Um dort hinzukommen muss man bei den Turnhallen der Strasse nach rechts folgen und dann links über den Platz gehen, bis man zu Eishalle kommt. Dort muss man dann einfach noch rechts um die Eishalle gehen und dann kommt man zum Sportplatz.";
+    }
     else if (relevantWords.includes("wo") && relevantWords.includes("haupttrakt")){
       answer = "Der Haupttrakt ist das grosse Gebäude in das man kommt, wenn man die KZO über die Freitreppe betritt.";
     }
