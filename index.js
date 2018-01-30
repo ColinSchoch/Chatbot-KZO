@@ -35,6 +35,7 @@ var data = {
   matur                     : [0, 0, 0, 0, 0, 0, 10],
   fragen                    : [0, 0, 0, 0, 0, 9, 0],
   datennutzungsbestimmung   : [0, 0, 0, 0, 0, 10, 0],
+  haupttrakt                : [0, 10, 0, 0, 0, 0, 0],
   datennutzungsbestimmungen : [0, 0, 0, 0, 0, 10, 0],
   verloren                  : [5, 10, 0, 0, 0, 0, 0]
 };
