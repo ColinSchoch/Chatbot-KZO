@@ -250,7 +250,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wie")&& relevantWords.includes("urlaubsgesuch")&& relevantWords.includes("zeit")) {
       answer = "Um ein Urlaubsgesuch zu bekommen muss man die Unterschrift spätestens eine Woche vor dem Datum des Gesuchs holen.";
     }
-    else if (relevantWords.includes("wo")&& relevantWords.includes("urlaubsgesuch")) {
+    else if ((relevantWords.includes("wo") || relevantWords.includes("wie"))&& relevantWords.includes("urlaubsgesuch")) {
       answer = "Für ein Urlaubsgesuch muss man vom Rektor eine Bewilligung erhalten.";
     }
     else if (relevantWords.includes("verloren")&& relevantWords.includes("absenzenheft")) {
