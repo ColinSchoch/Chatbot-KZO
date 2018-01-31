@@ -43,6 +43,7 @@ var data = {
   webseite                  : [0, 0, 0, 0, 0, 10, 0],
   kzo                       : [0, 0, 0, 0, 0, 7, 0],
   bot                       : [0, 0, 0, 0, 0, 8, 0],
+  dumm                       : [0, 0, 0, 0, 0, 8, 0],
   verloren                  : [5, 10, 0, 0, 0, 0, 0]
 };
 
@@ -51,7 +52,7 @@ var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "zeit", "
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte", "rabatkarte", "mensa"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse", "wie"];
-var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen", "wie", "kzo", "webseite", "bot"];
+var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen", "wie", "kzo", "webseite", "bot", "du", "dumm"];
 var importantWordsSlsUndMatur  = ["wann", "infos", "sls", "matur"];
 
 // Server(Website) frontpage
@@ -308,7 +309,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
       answer = "Ob eine Stunde ausfällt, sieht man auf dem Stundenplan. Wenn eine Lektion rot durchgestrichen ist, fällt diei Stunde aus.";
     }
     else if (relevantWords.includes("wo")&& (relevantWords.includes("finde") || relevantWords.includes("sehe") || relevantWords.includes("finden"))&& relevantWords.includes("stundenplan")){
-      answer = "Wenn du hier sp, gefolgt von deiner Klasse eingibst schicke ich dir einen Link welcher dir deinen Stundenplan zeigen wird. An der Schule hat es sonst auch zwei Bildschirme mit einem Stundenplan drauf. Der eine ist beim Foyer bei der Treppe und der andere findet man gegenüber dem Lehrerzimmer.";
+      answer = "Wenn du hier sp gefolgt von deiner Klasse eingibst, schicke ich dir einen Link welcher dir deinen Stundenplan zeigen wird. An der Schule hat es sonst auch zwei Bildschirme mit einem Stundenplan drauf. Der eine ist beim Foyer bei der Treppe die in den ersten Stock führt. Der andere Bildschirm findet man gegenüber des Lehrerzimmers.";
     }
   }
   else if (estimatedCategory === "mensa"){
@@ -357,6 +358,9 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
     else if (relevantWords.includes("welche")&& relevantWords.includes("fragen")&& relevantWords.includes("du")&& relevantWords.includes("beantworten")){
       answer = "Ich kann dir Fragen zum Absenzenheft, den Zimmern, dem Stundenplan, der Mensa, den Lehrpersonen, zu Onlinethemen und zum SLS und der Matur beantworten.";
+    }
+    else if (relevantWords.includes("du")&& relevantWords.includes("dumm")){
+      answer = "Nein.";
     }
     else if ((relevantWords.includes("wo") || relevantWords.includes("wie"))&& (relevantWords.includes("datennutzungsbestimmung") || relevantWords.includes("datennutzungsbestimmungen"))){
       answer = "Die Datennutzungsbestimmungen kannst du unter https://kzo-chatbot.herokuapp.com/Datennutzungsbestimmung einsehen.";
