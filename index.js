@@ -43,7 +43,9 @@ var data = {
   webseite                  : [0, 0, 0, 0, 0, 10, 0],
   kzo                       : [0, 0, 0, 0, 0, 7, 0],
   bot                       : [0, 0, 0, 0, 0, 8, 0],
-  dumm                       : [0, 0, 0, 0, 0, 8, 0],
+  dumm                      : [0, 0, 0, 0, 0, 8, 0],
+  du                        : [0, 0, 0, 0, 0, 8, 0],
+  helfen                    : [0, 0, 0, 0, 0, 8, 0],
   verloren                  : [5, 10, 0, 0, 0, 0, 0]
 };
 
@@ -52,7 +54,7 @@ var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "zeit", "
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte", "rabatkarte", "mensa"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse", "wie"];
-var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen", "wie", "kzo", "webseite", "bot", "du", "dumm"];
+var importantWordsOnline       = ["wo", "sehe", "ist", "stundenplan", "studmail", "was", "e-mail", "lehrer", "email", "online", "welche", "fragen", "du", "beantworten", "datennutzungsbestimmung", "datennutzungsbestimmungen", "wie", "kzo", "webseite", "bot", "du", "dumm", "helfen"];
 var importantWordsSlsUndMatur  = ["wann", "infos", "sls", "matur"];
 
 // Server(Website) frontpage
@@ -361,6 +363,9 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
     else if (relevantWords.includes("du")&& relevantWords.includes("dumm")){
       answer = "Nein.";
+    }
+    else if (relevantWords.includes("du")&& relevantWords.includes("helfen")){
+      answer = "Kommt auf deine Frage an, aber ich werde es versuchen.";
     }
     else if ((relevantWords.includes("wo") || relevantWords.includes("wie"))&& (relevantWords.includes("datennutzungsbestimmung") || relevantWords.includes("datennutzungsbestimmungen"))){
       answer = "Die Datennutzungsbestimmungen kannst du unter https://kzo-chatbot.herokuapp.com/Datennutzungsbestimmung einsehen.";
