@@ -12,21 +12,22 @@ var data = {
   absenzenheft              : [10, 0, 0, 0, 0, 0, 0],
   absenzen                  : [10, 0, 0, 0, 0, 0, 0],
   absentzen                 : [10, 0, 0, 0, 0, 0, 0],
-  urlaubsgesuch             : [10, 0, 0, 0, 0, 0, 0],
   absentzenheft             : [10, 0, 0, 0, 0, 0, 0],
+  urlaubsgesuch             : [10, 0, 0, 0, 0, 0, 0],
   unterschrift              : [10, 0, 0, 0, 0, 0, 0],
   unterschreiben            : [10, 0, 0, 0, 0, 0, 0],
   zimmer                    : [0, 6, 5, 0, 4, 0, 0],
   sportplatz                : [0, 10, 2, 0, 0, 0, 0],
   zeit                      : [2, 5, 5, 2, 5, 2, 1],
   turnhalle                 : [0, 10, 2, 0, 0, 0, 0],
+  lehrerzimmer              : [0, 10, 0, 0, 0, 0, 0],
   sporthalle                : [0, 10, 2, 0, 0, 0, 0],
   stundenplan               : [0, 5, 7, 0, 6, 5, 0],
   lektion                   : [0, 0, 8, 0, 5, 0, 0],
   essen                     : [0, 0, 0, 10, 0, 0, 0],
   mensa                     : [0, 0, 0, 10, 0, 0, 0],
   rabattkarte               : [0, 0, 0, 10, 0, 0, 0],
-  rabatkarte               : [0, 0, 0, 10, 0, 0, 0],
+  rabatkarte                : [0, 0, 0, 10, 0, 0, 0],
   lehrer                    : [5, 0, 0, 0, 10, 5, 0],
   unterricht                : [0, 0, 5, 0, 6, 0, 0],
   klasse                    : [0, 2, 2, 0, 6, 0, 0],
@@ -39,6 +40,9 @@ var data = {
   fragen                    : [0, 0, 0, 0, 0, 9, 0],
   datennutzungsbestimmung   : [0, 0, 0, 0, 0, 10, 0],
   haupttrakt                : [0, 10, 0, 0, 0, 0, 0],
+  medi                      : [0, 10, 0, 0, 0, 0, 0],
+  mediothek                 : [0, 10, 0, 0, 0, 0, 0],
+  sekretariat               : [0, 10, 0, 0, 0, 0, 0],
   datennutzungsbestimmungen : [0, 0, 0, 0, 0, 10, 0],
   webseite                  : [0, 0, 0, 0, 0, 10, 0],
   kzo                       : [0, 0, 0, 0, 0, 7, 0],
@@ -50,7 +54,7 @@ var data = {
 };
 
 var importantWordsAbsenzenheft = ["wo", "neues", "wer", "unterschreiben", "wie", "viele", "früher", "unterschrift", "holen", "lange", "zeit", "urlaubsgesuch", "woher", "verloren", "voll", "absenzenheft", "wann"];
-var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen", "lange", "sportplatz", "verloren", "haupttrakt"];
+var importantWordsZimmer       = ["darf", "rein", "wo", "wie", "viel", "zeit", "mehr", "hat", "gehen", "a", "b", "c", "d", "e", "turnhalle", "turnhallen", "sporthalle", "sporthallen", "lange", "sportplatz", "verloren", "haupttrakt", "lehrerzimmer", "sekretariat", "medi", "mediothek"];
 var importantWordsStundenplan  = ["wo", "sehe", "zimmer", "wie", "stunde", "ausfällt", "finden", "finde", "stundenplan"];
 var importantWordsMensa        = ["wie", "teuer", "essen", "menüplan", "wo", "funktioniert", "rabattkarte", "rabatkarte", "mensa"];
 var importantWordsLehrer       = ["wo", "sehe", "welcher", "lehrer","unterichtet", "wann", "schule", "hat", "mit", "problem", "was", "in", "welchem", "zimmer", "ist", "jetzt", "klasse", "wie"];
@@ -269,6 +273,15 @@ function generateAnswer(relevantWords, estimatedCategory) {
     }
     else if (relevantWords.includes("wie")&& relevantWords.includes("lange")&& relevantWords.includes("sportplatz")){
       answer = "Um zum Sportplatz zu kommen braucht man etwa 5 Minuten.";
+    }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("lehrerzimmer")){
+      answer = "Das Lehrerzimmer befindet sich im Haupttrakt wenn man in Richtung Biotrakt geht auf der rechten Seite.";
+    }
+    else if (relevantWords.includes("wo")&& (relevantWords.includes("mediothek") || relevantWords.includes("medi")){
+      answer = "Die Mediothek befindet sich im Erdgeschoss des Haupttrakts auf der linken Seite gegenüber des Sekretariats.";
+    }
+    else if (relevantWords.includes("wo")&& relevantWords.includes("sekretariat")){
+      answer = "Das Sekretariat befindet sich gleich auf der rechten Seite wenn man vom Foyer aus den Gang in Richtung Biotrakt nimmt.";
     }
     else if (relevantWords.includes ("wie")&& relevantWords.includes("viel")&& relevantWords.includes("zeit")&& relevantWords.includes("sportplatz")&& relevantWords.includes("mehr")){
       answer = "Grundsätzlich beginnt eine Sportlektion 2 Minuten später als normale Lektionen, aber wenn man auf dem Sportplatz Sport hat, kommen nochmals 3 Minuten hinzu. Das bedeutet, eine Lektion auf dem Sportplatz beginnt 5 Minuten später als eine normale Schullektion.";
