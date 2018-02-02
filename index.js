@@ -277,7 +277,7 @@ function generateAnswer(relevantWords, estimatedCategory) {
     else if (relevantWords.includes("wo")&& relevantWords.includes("lehrerzimmer")){
       answer = "Das Lehrerzimmer befindet sich im Haupttrakt wenn man in Richtung Biotrakt geht auf der rechten Seite.";
     }
-    else if (relevantWords.includes("wo")&& (relevantWords.includes("mediothek") || relevantWords.includes("medi")){
+    else if (relevantWords.includes("wo")&& (relevantWords.includes("mediothek") || relevantWords.includes("medi"))){
       answer = "Die Mediothek befindet sich im Erdgeschoss des Haupttrakts auf der linken Seite gegenüber des Sekretariats.";
     }
     else if (relevantWords.includes("wo")&& relevantWords.includes("sekretariat")){
